@@ -33,7 +33,7 @@
 }
 /* End Variables */
 
-/* Start Global Rules */
+/* Start Default Stylings */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -47,23 +47,19 @@ html {
   transition: 0.3s;
   font-size: 16px;
 }
+
 body {
   font-family: "poppins", sans-serif;
   line-height: 1.7;
   font-size: var(--font-size-md);
 }
+
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-/* End Global Rules */
+/* End Default Stylings */
