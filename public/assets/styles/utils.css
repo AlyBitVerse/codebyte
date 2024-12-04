@@ -1,13 +1,17 @@
 .flex {
   display: flex;
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
+
+.flex.row {
+  flex-direction: row;
 }
-.col {
-  display: flex;
+
+.flex.col {
   flex-direction: column;
+}
+
+.flex.row.wrap { 
+  flex-wrap: wrap;
 }
 
 /* Start component*/
@@ -22,9 +26,9 @@
 /* Start btn style */
 .btn {
   cursor: pointer;
-  padding: 5px;
+  padding: var(--spacing-s);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--spacing-s);
 }
 .btn.primary {
   color: #fff;
