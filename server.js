@@ -1,6 +1,10 @@
 // 3d Party Modules
 const express = require("express");
 const cors = require("cors");
+// Configure env variables
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || "dev"}.local`,
+});
 
 // Standard Modules
 const path = require("path");
@@ -9,7 +13,7 @@ const path = require("path");
 // ...
 
 // Constants
-const PORT = 8000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -18,13 +22,11 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, 'public','pages', 'index.html'))
-})
+app.use(
+  express.static(path.join(__dirname, process.env.STATIC_PATH || "public"))
+);
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}...`);
-})
-
+  console.log(`Listening on port ${PORT}...`);
+  console.log(`Visit http://127.0.0.1:${PORT}`);
+});
