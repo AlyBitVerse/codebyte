@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* Start Variables */
+:root {
+  /* Colors */
+  --color-bg: #fff;
+  --color-accent-primary: #0b759d;
+  --color-accent-secondary: #1fbabf;
+  --color-accent-tertiary: #60d3aa;
+  --color-accent-quaternary: #9cee8c;
+  --color-text: #777;
+
+  /* Fonts */
+  --font-size-xs: 0.25rem;
+  --font-size-s: 0.5rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-2x: 2.5rem;
+  --font-size-3x: 3.75rem;
+
+  /* Weight */
+  --font-weight-light: 200;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 700;
+
+  /* Spacings */
+  --spacings-xs: 0.25rem;
+  --spacings-s: 0.5rem;
+  --spacings-md: 1rem;
+  --spacings-lg: 1.25rem;
+  --spacings-2x: 2.5rem;
+  --spacings-3x: 3.75rem;
+}
+/* End Variables */
+
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: 0.3s;
+  font-size: 16px;
+}
+body {
+  font-family: "poppins", sans-serif;
+  line-height: 1.7;
+  font-size: var(--font-size-md);
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* End Global Rules */

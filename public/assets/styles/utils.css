@@ -1,0 +1,54 @@
+.flex {
+  display: flex;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Start component*/
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* End component */
+
+/* Start btn style */
+.btn {
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+}
+.btn.primary {
+  color: #fff;
+  background-color: var(--color-accent-primary);
+}
+.btn.secondary {
+  color: #fff;
+  background-color: var(--color-accent-secondary);
+}
+.btn.tertiary {
+  color: #fff;
+  background-color: var(--color-accent-tertiary);
+}
+.btn.quaternary {
+  color: black;
+  background-color: var(--color-accent-quaternary);
+}
+/* End btn style */
+
+/* Start text style */
+.text-center {
+  text-align: center;
+}
+.text-primary {
+  color: var(--color-text);
+}
+/* End text style */
