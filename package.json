@@ -4,8 +4,8 @@
   "description": "A web application that allows users to participate in, create and review coding challenges while earning achievements.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node ODE_ENV=dev server.js",
+    "dev": "NODE_ENV=dev nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/AlyBitVerse/codebyte#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.1"
   },
   "devDependencies": {
