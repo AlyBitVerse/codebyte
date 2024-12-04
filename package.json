@@ -4,8 +4,8 @@
   "description": "A web application that allows users to participate in, create and review coding challenges while earning achievements.",
   "main": "server.js",
   "scripts": {
-    "start": "node ODE_ENV=dev server.js",
-    "dev": "NODE_ENV=dev nodemon server.js"
+    "start": "node NODE_ENV=dev server.js",
+    "dev": "nodemon NODE_ENV=dev server.js"
   },
   "repository": {
     "type": "git",
