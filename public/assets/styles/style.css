@@ -1,0 +1,32 @@
+/* Start Header */
+
+header {
+  background-color: var(--color-accent-secondary);
+  width: 100%;
+  padding: 1rem 0;
+  color: var(--color-bg);
+
+  /* position: absolute;
+      top:var(--spacings-lg);
+      left:50% */
+}
+header nav {
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-bg);
+}
+header nav #logo {
+  
+  font-size: var(--font-size-2x);
+}
+header nav ul li a{
+  margin-left: var(--spacings-2x);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-bg);
+  
+}
+header nav ul li a:hover{
+    color: var(--color-text);
+}
+
+/* End Header */
