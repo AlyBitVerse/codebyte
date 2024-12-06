@@ -10,7 +10,9 @@ require("dotenv").config({
 const path = require("path");
 
 // Local Imports
-// ...
+const publicRoutes = require("./routes/public");
+const protectedRoutes = require("./routes/protected");
+const adminRoutes = require("./routes/admin");
 
 // Constants
 const PORT = process.env.PORT || 3000;
@@ -25,6 +27,18 @@ app.use(cors());
 app.use(
   express.static(path.join(__dirname, process.env.STATIC_PATH || "public"))
 );
+// Pages Routes
+// ...
+
+// API Routes
+app.use("/api", publicRoutes);
+app.use("/api", protectedRoutes);
+app.use("/api/admin", adminRoutes);
+
+app.use("*", (req, res) => {
+  res.status(404).json({ message: "Route not found" });
+  // Maybe also send a file 404 page
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
