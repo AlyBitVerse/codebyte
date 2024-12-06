@@ -1,4 +1,4 @@
-import { verifyToken } from "../utils/jwt";
+const { verifyToken } = require("../utils/jwt");
 
 const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
@@ -31,7 +31,4 @@ const roleMiddleware = (requiredRoles = []) => {
   };
 };
 
-module.exports = {
-  authMiddleware,
-  roleMiddleware,
-};
+module.exports = { authMiddleware, roleMiddleware };
