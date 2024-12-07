@@ -1,0 +1,58 @@
+.flex {
+  display: flex;
+}
+
+.flex.row {
+  flex-direction: row;
+}
+
+.flex.col {
+  flex-direction: column;
+}
+
+.flex.row.wrap { 
+  flex-wrap: wrap;
+}
+
+/* Start component*/
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* End component */
+
+/* Start btn style */
+.btn {
+  cursor: pointer;
+  padding: var(--spacing-s);
+  border: none;
+  border-radius: var(--spacing-s);
+}
+.btn.primary {
+  color: #fff;
+  background-color: var(--color-accent-primary);
+}
+.btn.secondary {
+  color: #fff;
+  background-color: var(--color-accent-secondary);
+}
+.btn.tertiary {
+  color: #fff;
+  background-color: var(--color-accent-tertiary);
+}
+.btn.quaternary {
+  color: black;
+  background-color: var(--color-accent-quaternary);
+}
+/* End btn style */
+
+/* Start text style */
+.text-center {
+  text-align: center;
+}
+.text-primary {
+  color: var(--color-text);
+}
+/* End text style */

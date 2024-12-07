@@ -1,0 +1,34 @@
+{
+  "name": "codebyte",
+  "version": "1.0.0",
+  "description": "A web application that allows users to participate in, create and review coding challenges while earning achievements.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node NODE_ENV=dev server.js",
+    "dev": "nodemon NODE_ENV=dev server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlyBitVerse/codebyte.git"
+  },
+  "keywords": [
+    "coding",
+    "challenges",
+    "web"
+  ],
+  "author": "Mohamed Aly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlyBitVerse/codebyte/issues"
+  },
+  "homepage": "https://github.com/AlyBitVerse/codebyte#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
