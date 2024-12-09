@@ -73,6 +73,11 @@ class BaseRepository {
       throw error;
     }
   }
+
+  async itemExistsById(id) {
+    const items = await this.getAllItems();
+    return items.some((item) => item.id === id);
+  }
 }
 
 module.exports = BaseRepository;

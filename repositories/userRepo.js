@@ -1,106 +1,32 @@
-const dbManager = require("../utils/dbManager");
+const BaseRepository = require("./baseRepo");
 const User = require("../models/User");
 
-class UserRepo {
-  static async createUser(user) {
-    try {
-      await dbManager.readWrite("users", (users) => {
-        users.push(user);
-        return users; // IMPORTANT
-      });
-    } catch (error) {
-      console.error("ERROR (UserRepo)::", "Error creating user:", error);
-      throw error;
-    }
+class UserRepository extends BaseRepository {
+  constructor() {
+    super("users");
   }
-
-  static async updateUserById(id, newData) {
+  async getUserByEmail(email) {
     try {
-      await dbManager.readWrite("users", (users) => {
-        const userIndex = users.findIndex((user) => user.id === id);
-        if (userIndex === -1) throw new Error("User not found");
-        users[userIndex] = { ...users[userIndex], ...newData };
-        return users; // IMPORTANT
-      });
-    } catch (error) {
-      console.error("ERROR (UserRepo)::", "Error updating user by ID:", error);
-      throw error;
-    }
-  }
-
-  static async getUserById(id) {
-    try {
-      const users = await this.getAllUsers();
-      const user = users.find((user) => user.id === id);
-      if (!user) throw new Error(`Cannot get user by id ${id}`);
-      return user;
-    } catch (error) {
-      console.error(
-        "ERROR (UserRepo)::",
-        `Error getting user by ID: ${id}`,
-        error
-      );
-      throw error;
-    }
-  }
-
-  static async getUserByEmail(email) {
-    try {
-      const users = await this.getAllUsers();
+      const users = await this.getAllItems();
       return users.find((user) => user.email === email);
     } catch (error) {
       console.error(
-        "ERROR (UserRepo)::",
+        "ERROR (UserRepo):",
         `Error getting user by email: ${email}`,
         error
       );
       throw error;
     }
   }
-
-  static async getAllUsers() {
-    try {
-      return await dbManager.readOnly("users");
-    } catch (error) {
-      console.error("ERROR (UserRepo)::", "Error getting users:", error);
-      throw error;
-    }
-  }
-
-  static async deleteUserById(id) {
-    try {
-      await dbManager.readWrite("users", (users) => {
-        const filtered = users.filter((user) => user.id !== id);
-        return filtered; // IMPORTANT
-      });
-      console.info("SUCCESS (UserRepo)::", "User deleted.");
-    } catch (error) {
-      console.error("ERROR (UserRepo)::", "Error deleting user:", error);
-      throw error;
-    }
-  }
-
-  static async clearRepository() {
-    try {
-      await dbManager.writeOnly("users", []);
-      console.info("SUCCESS (UserRepo)::", "Cleared users repository.");
-    } catch (error) {
-      console.error("ERROR (UserRepo)::", "Error clearing repository:", error);
-      throw error;
-    }
-  }
-
-  static async userExistsById(id) {
-    const users = await this.getAllUsers();
-    return users.some((user) => user.id === id);
-  }
-  static async userExistsByEmail(email) {
-    const users = await this.getAllUsers();
+  async userExistsByEmail(email) {
+    const users = await this.getAllItems();
     return users.some((user) => user.email === email);
   }
 }
 
-module.exports = UserRepo;
+module.exports = UserRepository;
+
+const userRepo = new UserRepository();
 
 async function test() {
   console.log("\nTesting createUser fn..");
@@ -178,44 +104,46 @@ async function test() {
   ];
 
   dummyUsers.forEach(async (user) => {
-    await UserRepo.createUser(user);
+    await userRepo.createItem(user);
   });
 
   console.log("\nTesting getAllUsers fn..");
-  await UserRepo.getAllUsers().then((users) =>
-    users.forEach((user) => console.log("id:", user.id, user.username))
-  );
+  await userRepo
+    .getAllItems()
+    .then((users) =>
+      users.forEach((user) => console.log("id:", user.id, user.username))
+    );
 
   console.log("\nTesting getUserById fn..");
-  await UserRepo.getUserById(2).then((user) =>
-    console.log(user.username, "rank:", user.rank)
-  );
+  await userRepo
+    .getItemById(2)
+    .then((user) => console.log(user.username, "rank:", user.rank));
 
   console.log("\nTesting getUserByEmail fn..");
-  await UserRepo.getUserByEmail("user.susan@example.com").then((user) =>
-    console.log(user.username, "rank:", user.rank)
-  );
+  await userRepo
+    .getUserByEmail("user.susan@example.com")
+    .then((user) => console.log(user.username, "rank:", user.rank));
 
   console.log("\nTesting updateUserById fn..");
-  UserRepo.updateUserById(3, { username: "emao", rank: 3 });
-  UserRepo.updateUserById(1, { username: "alpha", rank: 7 });
-  await UserRepo.updateUserById(2, { username: "shero", rank: 4 });
+  userRepo.updateItemById(3, { username: "emao", rank: 3 });
+  userRepo.updateItemById(1, { username: "alpha", rank: 7 });
+  await userRepo.updateItemById(2, { username: "shero", rank: 4 });
 
   console.log("\nTesting deleteUserById fn..");
-  await UserRepo.deleteUserById(4);
+  await userRepo.deleteItemById(4);
 
   console.log("\nTesting userExistsById fn..");
   const someId = 4;
-  const existsById = await UserRepo.userExistsById(someId);
+  const existsById = await userRepo.userExistsById(someId);
   console.log(`User with id(${someId}) exists ->`, existsById);
 
   console.log("\nTesting userExistsByEmail fn..");
   const someEmail = "mod.alex@example.com";
-  const existsByEmail = await UserRepo.userExistsByEmail(someEmail);
+  const existsByEmail = await userRepo.userExistsByEmail(someEmail);
   console.log(`User with email(${someEmail}) exists ->`, existsByEmail);
 
   // console.log("\nTesting clearRepository fn..");
-  // UserRepo.clearRepository();
+  // userRepo.clearRepository();
 }
 
 test();
