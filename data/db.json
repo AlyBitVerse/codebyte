@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin_john",
+      "email": "admin.john@example.com",
+      "password": "hashed_password_for_admin",
+      "role": "admin",
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-12-09T00:00:00.000Z",
+      "rank": 1,
+      "points": 2000,
+      "createdChallenges": [
+        "challenge1",
+        "challenge2"
+      ],
+      "solvedChallenges": [
+        "challenge3"
+      ],
+      "badges": [
+        "admin_badge"
+      ]
+    },
+    {
+      "id": 3,
+      "username": "user_susan",
+      "email": "user.susan@example.com",
+      "password": "hashed_password_for_user",
+      "role": "user",
+      "createdAt": "2023-03-10T00:00:00.000Z",
+      "updatedAt": "2023-12-09T00:00:00.000Z",
+      "rank": 5,
+      "points": 1000,
+      "createdChallenges": [],
+      "solvedChallenges": [
+        "challenge2",
+        "challenge5"
+      ],
+      "badges": [
+        "beginner_badge"
+      ]
+    },
+    {
+      "id": 2,
+      "username": "mod_alex",
+      "email": "mod.alex@example.com",
+      "password": "hashed_password_for_moderator",
+      "role": "moderator",
+      "createdAt": "2023-02-15T00:00:00.000Z",
+      "updatedAt": "2023-12-09T00:00:00.000Z",
+      "rank": 3,
+      "points": 1500,
+      "createdChallenges": [
+        "challenge3"
+      ],
+      "solvedChallenges": [
+        "challenge1",
+        "challenge4"
+      ],
+      "badges": [
+        "moderator_badge"
+      ]
+    }
+  ],
+  "challenges": []
+}
