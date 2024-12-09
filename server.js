@@ -13,10 +13,15 @@ const path = require("path");
 // const publicRoutes = require("./routes/public");
 // const protectedRoutes = require("./routes/protected");
 // const adminRoutes = require("./routes/admin");
+<<<<<<< HEAD
+=======
+const viewRoutes = require("./routes/views");
+>>>>>>> f8ed8f0 (Refactored views routes with a reusable serveHtml function)
 
 // Constants
 const PORT = process.env.PORT || 3000;
 const app = express();
+const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -24,11 +29,10 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(
-  express.static(path.join(__dirname, process.env.STATIC_PATH || "public"))
-);
+app.use(express.static(publicPath));
+
 // Pages Routes
-// ...
+app.use(viewRoutes);
 
 // API Routes
 // app.use("/api", publicRoutes);
