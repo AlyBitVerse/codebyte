@@ -1,13 +1,13 @@
-const fs = require("fs");
-const path = require("path");
-const dbPath = path.join(__dirname, "..", "data", "db.json");
+const dbManager = require("../utils/dbManager");
+const User = require("../models/User");
 
 class UserRepo {
   static async createUser(user) {
     try {
-      const users = await this.getAllUsers(); // Get all existing users
-      users.push(user); // Add the new user to the array
-      await this.#saveUsers(users); // Save the updated users list back to the file
+      await dbManager.readWrite("users", (users) => {
+        users.push(user);
+        return users; // IMPORTANT
+      });
     } catch (error) {
       console.error("ERROR (UserRepo)::", "Error creating user:", error);
       throw error;
@@ -16,11 +16,12 @@ class UserRepo {
 
   static async updateUserById(id, newData) {
     try {
-      const users = await this.getAllUsers();
-      const userIndex = users.findIndex((user) => user.id === id);
-      if (userIndex === -1) throw new Error("User not found");
-      users[userIndex] = { ...users[userIndex], ...newData };
-      await this.#saveUsers(users);
+      await dbManager.readWrite("users", (users) => {
+        const userIndex = users.findIndex((user) => user.id === id);
+        if (userIndex === -1) throw new Error("User not found");
+        users[userIndex] = { ...users[userIndex], ...newData };
+        return users; // IMPORTANT
+      });
     } catch (error) {
       console.error("ERROR (UserRepo)::", "Error updating user by ID:", error);
       throw error;
@@ -30,7 +31,9 @@ class UserRepo {
   static async getUserById(id) {
     try {
       const users = await this.getAllUsers();
-      return users.find((user) => user.id === id);
+      const user = users.find((user) => user.id === id);
+      if (!user) throw new Error(`Cannot get user by id ${id}`);
+      return user;
     } catch (error) {
       console.error(
         "ERROR (UserRepo)::",
@@ -57,22 +60,7 @@ class UserRepo {
 
   static async getAllUsers() {
     try {
-      if (!fs.existsSync(dbPath)) {
-        // If file doesn't exist, initialize it with an empty array
-        await fs.promises.writeFile(
-          dbPath,
-          JSON.stringify({ users: [] }, null, 2)
-        );
-        return [];
-      }
-
-      const data = await fs.promises.readFile(dbPath, "utf-8");
-      if (!data || data.trim() === "") {
-        return []; // Return empty array if file is empty or only contains spaces
-      }
-
-      const parsedData = JSON.parse(data);
-      return parsedData.users || [];
+      return await dbManager.readOnly("users");
     } catch (error) {
       console.error("ERROR (UserRepo)::", "Error getting users:", error);
       throw error;
@@ -81,9 +69,10 @@ class UserRepo {
 
   static async deleteUserById(id) {
     try {
-      const users = await this.getAllUsers();
-      const filtered = users.filter((user) => user.id !== id);
-      await this.#saveUsers(filtered);
+      await dbManager.readWrite("users", (users) => {
+        const filtered = users.filter((user) => user.id !== id);
+        return filtered; // IMPORTANT
+      });
       console.info("SUCCESS (UserRepo)::", "User deleted.");
     } catch (error) {
       console.error("ERROR (UserRepo)::", "Error deleting user:", error);
@@ -91,13 +80,12 @@ class UserRepo {
     }
   }
 
-  static async #saveUsers(users) {
+  static async clearRepository() {
     try {
-      const data = JSON.stringify({ users }, null, 2); // Wrap the users array inside an object
-      await fs.promises.writeFile(dbPath, data, "utf-8"); // Save the updated users to db.json
-      console.info("SUCCESS (UserRepo)::", "Updated users.");
+      await dbManager.writeOnly("users", []);
+      console.info("SUCCESS (UserRepo)::", "Cleared users repository.");
     } catch (error) {
-      console.error("ERROR (UserRepo)::", "Error saving users:", error);
+      console.error("ERROR (UserRepo)::", "Error clearing repository:", error);
       throw error;
     }
   }
@@ -105,31 +93,110 @@ class UserRepo {
 
 module.exports = UserRepo;
 
-// Test cases for creating users
-async function testCreateUsers() {
-  await UserRepo.createUser({
-    id: "1", // Make sure to include an ID
-    name: "Mohamed",
-    email: "moedris.dev@gmail.com",
-    role: "admin",
-    password: "123",
+async function test() {
+  console.log("Testing createUser fn..");
+  const dummyUsers = [
+    new User(
+      1,
+      "admin_john",
+      "admin.john@example.com",
+      "hashed_password_for_admin",
+      "admin",
+      new Date("2023-01-01"),
+      new Date("2023-12-09"),
+      1,
+      2000,
+      ["challenge1", "challenge2"],
+      ["challenge3"],
+      ["admin_badge"]
+    ),
+    new User(
+      2,
+      "mod_alex",
+      "mod.alex@example.com",
+      "hashed_password_for_moderator",
+      "moderator",
+      new Date("2023-02-15"),
+      new Date("2023-12-09"),
+      3,
+      1500,
+      ["challenge3"],
+      ["challenge1", "challenge4"],
+      ["moderator_badge"]
+    ),
+    new User(
+      3,
+      "user_susan",
+      "user.susan@example.com",
+      "hashed_password_for_user",
+      "user",
+      new Date("2023-03-10"),
+      new Date("2023-12-09"),
+      5,
+      1000,
+      [],
+      ["challenge2", "challenge5"],
+      ["beginner_badge"]
+    ),
+    new User(
+      4,
+      "user_mike",
+      "user.mike@example.com",
+      "hashed_password_for_mike",
+      "user",
+      new Date("2023-04-05"),
+      new Date("2023-12-09"),
+      6,
+      1200,
+      ["challenge6"],
+      ["challenge7"],
+      ["intermediate_badge"]
+    ),
+    new User(
+      5,
+      "mod_jane",
+      "mod.jane@example.com",
+      "hashed_password_for_jane",
+      "moderator",
+      new Date("2023-05-18"),
+      new Date("2023-12-09"),
+      2,
+      1800,
+      ["challenge8"],
+      ["challenge1", "challenge6"],
+      ["moderator_badge"]
+    ),
+  ];
+
+  await dummyUsers.forEach(async (user) => {
+    await UserRepo.createUser(user);
   });
 
-  await UserRepo.createUser({
-    id: "2", // Make sure to include an ID
-    name: "Eiman",
-    email: "eimanhamdy99@gmail.com",
-    role: "admin",
-    password: "123",
-  });
+  console.log("Testing getAllUsers fn..");
+  await UserRepo.getAllUsers().then((users) =>
+    users.forEach((user) => console.log("id:", user.id, user.username))
+  );
 
-  await UserRepo.createUser({
-    id: "3", // Make sure to include an ID
-    name: "Shereen",
-    email: "sherocode@gmail.com",
-    role: "admin",
-    password: "123",
-  });
+  console.log("Testing getUserById fn..");
+  await UserRepo.getUserById(2).then((user) =>
+    console.log(user.username, "rank:", user.rank)
+  );
+
+  console.log("Testing getUserByEmail fn..");
+  await UserRepo.getUserByEmail("user.susan@example.com").then((user) =>
+    console.log(user.username, "rank:", user.rank)
+  );
+
+  console.log("Testing updateUserById fn..");
+  UserRepo.updateUserById(3, { username: "emao", rank: 3 });
+  UserRepo.updateUserById(1, { username: "alpha", rank: 7 });
+  await UserRepo.updateUserById(2, { username: "shero", rank: 4 });
+
+  console.log("Testing deleteUserById fn..");
+  await UserRepo.deleteUserById(4);
+
+  // console.log("Testing clearRepository fn..");
+  // UserRepo.clearRepository();
 }
 
-testCreateUsers();
+test();
