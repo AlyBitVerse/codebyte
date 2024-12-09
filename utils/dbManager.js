@@ -2,39 +2,41 @@ const fs = require("fs");
 const path = require("path");
 
 const { Mutex } = require("async-mutex");
-const dbPath = path.join(__dirname, "..", "data", "db.json");
-
+const dbDirectory = path.join(__dirname, "..", "data");
+const constructCollectionPath = (name) =>
+  path.join(dbDirectory, `${name}.json`);
 class DbManager {
   static #mutex = new Mutex();
-  static tables = { users: [], challenges: [] };
+
   constructor() {
     if (DbManager.instance) return DbManager.instance;
     DbManager.instance = this;
   }
 
-  async readOnly(shouldAcquire = true) {
+  async readOnly(collection, shouldAcquire = true) {
     let release;
     if (shouldAcquire) release = await DbManager.#mutex.acquire();
     try {
-      if (!fs.existsSync(dbPath)) {
+      const collectionPath = constructCollectionPath(collection);
+      if (!fs.existsSync(collectionPath)) {
         await fs.promises.writeFile(
-          dbPath,
-          JSON.stringify({ users: [], challenges: [] }, null, 2)
+          collectionPath,
+          JSON.stringify([], null, 2)
         );
-        return { users: [], challenges: [] };
+        return [];
       }
 
-      const data = await fs.promises.readFile(dbPath, "utf-8");
-      if (!data || data.trim() === "" || data.trim() === "{}") {
+      const data = await fs.promises.readFile(collectionPath, "utf-8");
+      if (!data || data.trim() === "" || data.trim() === "[]") {
         await fs.promises.writeFile(
-          dbPath,
-          JSON.stringify({ users: [], challenges: [] }, null, 2)
+          collectionPath,
+          JSON.stringify([], null, 2)
         );
-        return { users: [], challenges: [] };
+        return [];
       }
 
       const parsedData = JSON.parse(data);
-      return parsedData || { users: [], challenges: [] };
+      return parsedData || [];
     } catch (error) {
       console.error("ERROR (DbManager)::", "Error reading data:", error);
       throw error;
@@ -43,11 +45,12 @@ class DbManager {
     }
   }
 
-  async writeOnly(data) {
+  async writeOnly(collection, data) {
     const release = await DbManager.#mutex.acquire();
     try {
+      const collectionPath = constructCollectionPath(collection);
       const readyData = JSON.stringify(data, null, 2);
-      await fs.promises.writeFile(dbPath, readyData, "utf-8");
+      await fs.promises.writeFile(collectionPath, readyData, "utf-8");
       console.info("SUCCESS (DbManager)::", "Data overwritten successfully.");
     } catch (error) {
       console.error("ERROR (DbManager)::", "Error overwriting data:", error);
@@ -57,13 +60,14 @@ class DbManager {
     }
   }
 
-  async readWrite(modify) {
+  async readWrite(collectionName, modify) {
     const release = await DbManager.#mutex.acquire();
     try {
-      const data = await this.readOnly(false);
-      const modifiedData = modify(data);
+      const collectionPath = constructCollectionPath(collectionName);
+      const collectionData = await this.readOnly(collectionName, false);
+      const modifiedData = modify(collectionData);
       await fs.promises.writeFile(
-        dbPath,
+        collectionPath,
         JSON.stringify(modifiedData),
         "utf-8"
       );
@@ -77,10 +81,10 @@ class DbManager {
   }
 }
 
-module.exports = DbManager;
+module.exports = new DbManager();
 
 function testRWOperations(iterations = 5) {
-  db.writeOnly(DbManager.tables);
+  db.writeOnly([]);
   Array.from({ length: iterations }).forEach((_, i) => {
     db.readWrite((existingData) => {
       existingData.users.push({
@@ -104,7 +108,7 @@ function testRWOperations(iterations = 5) {
   });
 }
 
-const db = new DbManager();
+// const db = new DbManager();
 // testRWOperations();
 
 function testUserModel() {
