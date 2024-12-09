@@ -89,12 +89,21 @@ class UserRepo {
       throw error;
     }
   }
+
+  static async userExistsById(id) {
+    const users = await this.getAllUsers();
+    return users.some((user) => user.id === id);
+  }
+  static async userExistsByEmail(email) {
+    const users = await this.getAllUsers();
+    return users.some((user) => user.email === email);
+  }
 }
 
 module.exports = UserRepo;
 
 async function test() {
-  console.log("Testing createUser fn..");
+  console.log("\nTesting createUser fn..");
   const dummyUsers = [
     new User(
       1,
@@ -168,34 +177,44 @@ async function test() {
     ),
   ];
 
-  await dummyUsers.forEach(async (user) => {
+  dummyUsers.forEach(async (user) => {
     await UserRepo.createUser(user);
   });
 
-  console.log("Testing getAllUsers fn..");
+  console.log("\nTesting getAllUsers fn..");
   await UserRepo.getAllUsers().then((users) =>
     users.forEach((user) => console.log("id:", user.id, user.username))
   );
 
-  console.log("Testing getUserById fn..");
+  console.log("\nTesting getUserById fn..");
   await UserRepo.getUserById(2).then((user) =>
     console.log(user.username, "rank:", user.rank)
   );
 
-  console.log("Testing getUserByEmail fn..");
+  console.log("\nTesting getUserByEmail fn..");
   await UserRepo.getUserByEmail("user.susan@example.com").then((user) =>
     console.log(user.username, "rank:", user.rank)
   );
 
-  console.log("Testing updateUserById fn..");
+  console.log("\nTesting updateUserById fn..");
   UserRepo.updateUserById(3, { username: "emao", rank: 3 });
   UserRepo.updateUserById(1, { username: "alpha", rank: 7 });
   await UserRepo.updateUserById(2, { username: "shero", rank: 4 });
 
-  console.log("Testing deleteUserById fn..");
+  console.log("\nTesting deleteUserById fn..");
   await UserRepo.deleteUserById(4);
 
-  // console.log("Testing clearRepository fn..");
+  console.log("\nTesting userExistsById fn..");
+  const someId = 4;
+  const existsById = await UserRepo.userExistsById(someId);
+  console.log(`User with id(${someId}) exists ->`, existsById);
+
+  console.log("\nTesting userExistsByEmail fn..");
+  const someEmail = "mod.alex@example.com";
+  const existsByEmail = await UserRepo.userExistsByEmail(someEmail);
+  console.log(`User with email(${someEmail}) exists ->`, existsByEmail);
+
+  // console.log("\nTesting clearRepository fn..");
   // UserRepo.clearRepository();
 }
 
