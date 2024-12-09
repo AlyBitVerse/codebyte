@@ -1,1 +1,19 @@
-
+/* Start selections-menu */
+.selections-menu{
+    width: 20%;
+    background-color:var(--color-accent-tertiary) ;
+    
+  
+  }
+  .selections-menu form{
+    width: 80%;
+    padding: .5rem;
+    margin: 0 auto;
+  
+  }
+  .selections-menu form select{
+    padding: .5rem;
+    
+  }
+  /* End selections-menu */
+  
