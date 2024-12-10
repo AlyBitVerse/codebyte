@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const authController = require("../controllers/authController");
 const challengeController = require("../controllers/challengeController");
 
-router.post("/register", authController.register);
+router.post("/register", userController.createUser);
 
-router.post("/login", authController.login);
+router.post("/login", userController.loginUser);
 
 router.get("/challenges", challengeController.getActiveChallenges);
 
