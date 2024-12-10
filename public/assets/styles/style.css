@@ -4,13 +4,11 @@
   background-color: var(--color-accent-tertiary);
   border-radius: 1rem;
   position: absolute;
-  
 }
 .selections-menu form {
   width: 80%;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   margin: 0 auto;
- 
 }
 .selections-menu form select,
 input {
