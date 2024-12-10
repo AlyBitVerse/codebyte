@@ -12,7 +12,8 @@ class Challenge {
     approvedAt = null,
     approvedBy = null, //Should be user instance or ID?
     testCases = [],
-    participants = {} // e.g., { userID: { attempts: 3, successful: true } }
+    participants = {}, // e.g., { userID: { attempts: 3, successful: true } }
+    tags = []
   ) {
     this.id = id;
     this.creatorID = creatorID;
@@ -27,6 +28,7 @@ class Challenge {
     this.approvedBy = approvedBy;
     this.testCases = testCases;
     this.participants = participants;
+    this.tags = tags;
   }
 }
 
