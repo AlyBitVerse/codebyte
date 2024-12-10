@@ -1,34 +1,25 @@
 /* Start Header */
-
 header {
   background-color: var(--color-accent-secondary);
   width: 100%;
-  padding: 1rem 0;
-  color: var(--color-bg);
 }
 header nav {
   justify-content: space-between;
-  align-items: center;
   color: var(--color-bg);
 }
 header nav #logo {
   font-size: var(--font-size-2x);
 }
-header nav ul li a {
-  margin-left: var(--spacings-lg);
-  font-weight: 500;
-  color: var(--color-bg);
+header nav .menu {
+  gap: 2rem;
+  align-items: center;
 }
-.header .toggle {
-  gap: 0.5rem;
+header nav ul li img {
+  width: 3rem;
+  border-radius: 50%;
 }
-header nav ul li input {
-  border-radius: 0.5rem;
-  border: none;
+header nav ul li :hover {
   color: var(--color-text);
-  padding: 0.3rem;
-}
-header nav ul li a:hover {
-  color: var(--color-text);
+  cursor: pointer;
 }
 /* End Header */
