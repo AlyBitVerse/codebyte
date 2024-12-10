@@ -1,1 +1,30 @@
+.sign-up {
+  width: 30rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.sign-up form {
+  margin-top: 2rem;
+  padding: 2rem;
+  gap: 2rem;
+  box-shadow: 1px 3px 10px 1px var(--color-accent-primary);
+  border-radius: 1rem;
+}
+.sign-up form input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: .5rem;
+  border: none;
+  box-shadow: 1px 3px 10px 0 var(--color-accent-primary);
 
+}
+
+.sign-up form a {
+  background-color: var(--color-accent-primary);
+  color: #fff;
+  padding:.5rem;
+  border-radius: .5rem;
+  text-align: center;
+}
