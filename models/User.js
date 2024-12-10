@@ -2,29 +2,34 @@ class User {
   constructor(
     id,
     username,
+    name,
     email,
     password,
-    role,
-    createdAt,
-    updatedAt,
-    rank,
-    points,
-    createdChallenges,
-    solvedChallenges,
-    badges
+    role = "user",
+    createdAt = new Date(),
+    updatedAt = new Date(),
+    rank = 0,
+    points = 0,
+    createdChallenges = [],
+    solvedChallenges = [],
+    badges = []
   ) {
+    if (!username || !name || !email || !password) {
+      throw new Error("Missing required fields");
+    }
     this.id = id;
     this.username = username;
+    this.name = name;
     this.email = email;
     this.password = password;
-    this.role = role || "user";
-    this.createdAt = createdAt || new Date();
-    this.updatedAt = updatedAt || new Date();
-    this.rank = rank || 0;
-    this.points = points || 0;
-    this.createdChallenges = createdChallenges || [];
-    this.solvedChallenges = solvedChallenges || [];
-    this.badges = badges || [];
+    this.role = role;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+    this.rank = rank;
+    this.points = points;
+    this.createdChallenges = createdChallenges;
+    this.solvedChallenges = solvedChallenges;
+    this.badges = badges;
   }
 }
 
