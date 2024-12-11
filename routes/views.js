@@ -10,9 +10,4 @@ router.get("/profile", serveHTML("profile"));
 
 router.get("/auth", serveHTML("auth"));
 
-router.use("*", (req, res) => {
-  res.status(404);
-  res.send("<h1>Page Not Available :( </h1>");
-  // Maybe also send a file 404 page
-});
 module.exports = router;
