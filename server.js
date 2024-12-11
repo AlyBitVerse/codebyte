@@ -12,7 +12,7 @@ const path = require("path");
 // Local Imports
 const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
-// const adminRoutes = require("./routes/admin");
+const adminRoutes = require("./routes/admin");
 const viewRoutes = require("./routes/views");
 
 // Constants
@@ -34,7 +34,7 @@ app.use(viewRoutes);
 // API Routes
 app.use("/api", publicRoutes);
 app.use("/api", protectedRoutes);
-// app.use("/api/admin", adminRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use("*", (req, res) => {
   res.status(404).json({ message: "Route not found" });
