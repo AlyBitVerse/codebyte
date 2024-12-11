@@ -1,20 +1,34 @@
 /* Start selections-menu */
 .selections-menu {
-  width: 20%;
-  background-color: var(--color-accent-tertiary);
+  width: 30%;
+  min-width: 20rem;
+  border: solid 0.5px #807f7f7a;
   border-radius: 1rem;
   position: absolute;
 }
 .selections-menu form {
-  width: 80%;
-  padding: 1rem 0.5rem;
+  width: 90%;
+  padding: 1rem 0.25rem;
   margin: 0 auto;
 }
 .selections-menu form select,
-input {
+.selections-menu form input {
   padding: 0.5rem;
   margin: 0.5rem;
+  border: solid #807f7f7a 0.5px;
+  border-radius: 0.5rem;
+  font-family: "poppins", sans-serif;
 }
+
+.selections-menu form select:hover,
+.selections-menu form input:hover {
+  border: solid #807f7f 0.5px;
+}
+.selections-menu form select:focus,
+.selections-menu form input:focus {
+  border: solid var(--color-accent-primary) 0.75px;
+}
+
 .selections-menu form img {
   width: 80%;
   margin: 3rem auto;

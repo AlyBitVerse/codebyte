@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <option value="">Expert</option>
         </select>
 
-        <input list="Tags" name="" id="" placeholder="Tags (Optional)" />
+        <input list="Tags" name="tags" id="tags" placeholder="Tags (Optional)" />
         <datalist id="Tags">
           <option value="Loops"></option>
           <option value="Conditions"></option>
