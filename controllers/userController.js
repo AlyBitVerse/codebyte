@@ -6,7 +6,11 @@ const { signToken } = require("../utils/jwt");
 
 class UserController {
   static #repo = new UserRepository();
+  static validUserFields = ["username", "name", "email", "password"];
 
+  /** 
+ @Public
+  */
   async createUser(req, res) {
     const { name, username, email, password, accessKey } = req.body;
     if (!name || !email || !username || !password)
@@ -58,6 +62,10 @@ class UserController {
     }
   }
 
+  /** 
+ @Public
+  */
+
   async loginUser(req, res) {
     const { username, email, password } = req.body;
     if ((!email && !username) || !password)
@@ -92,33 +100,58 @@ class UserController {
     }
   }
 
+  /** 
+ @Protected
+  */
   async getCurrentUser(req, res) {
     try {
-      const id = req.user.id;
-      const user = await UserController.#repo.getItemById(id);
+      const user = await UserController.#repo.getItemById(req.user.id);
+
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
 
-      res.status(200).json({ user });
+      const instance = User.fromJSON(user);
+      res.status(200).json({ user: instance.toJSON(true) });
     } catch (e) {
+      console.log(e);
       res.status(500).json({ message: "Server error" });
     }
   }
 
+  /** 
+ @Protected
+  */
   async updateCurrentUser(req, res) {
     try {
       const id = req.user.id;
       const updates = req.body;
+
+      const invalidFields = Object.keys(updates).filter(
+        (key) => !UserController.validUserFields.includes(key)
+      );
+
+      if (invalidFields.length > 0) {
+        return res.status(400).json({
+          message: `Invalid fields: ${invalidFields.join(", ")}`,
+        });
+      }
+
       const user = await UserController.#repo.getItemById(id);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const updatedUser = UserController.#repo.updateItemById(id, updates);
-      res
-        .status(200)
-        .json({ message: "User updated successfully", user: updatedUser });
+      const updatedUser = await UserController.#repo.updateItemById(
+        id,
+        updates
+      );
+      const instance = User.fromJSON(updatedUser);
+
+      res.status(200).json({
+        message: "User updated successfully",
+        user: instance.toJSON(true),
+      });
     } catch (e) {
       res.status(500).json({ message: "Server error" });
     }
