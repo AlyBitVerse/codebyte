@@ -1,19 +1,19 @@
 const UserRepository = require("../repositories/userRepo");
 const User = require("../models/User");
-const uid = require("uid");
+const { uid } = require("uid");
 const bcrypt = require("bcrypt");
-const { signToken, verifyToken } = require("../utils/jwt");
+const { signToken } = require("../utils/jwt");
+
 class UserController {
-  constructor() {
-    this.repo = new UserRepository();
-  }
+  static #repo = new UserRepository();
 
   async createUser(req, res) {
-    const { name, username, email, password } = req.body;
-    if (!user.name || !user.email || !user.username || !user.password)
-      return res.status().json({ message: "Missing required fields" });
-    if (this.repo.userExistsByEmail(user.email))
-      return res.status().json({ message: "A user with same email exists" });
+    // return res.send("<h1>Running</h1>");
+    const { name, username, email, password, accessKey } = req.body;
+    if (!name || !email || !username || !password)
+      return res.status(401).json({ message: "Missing required fields" });
+    if (await UserController.#repo.userExistsByEmail(email))
+      return res.status(409).json({ message: "A user with same email exists" });
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email))
@@ -43,8 +43,16 @@ class UserController {
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
       // Assemble user instance
-      const user = new User(userID, username, name, email, hashedPassword); // name, username, email, password
-      await this.repo.createItem(user);
+      const user = new User(
+        userID,
+        username,
+        name,
+        email,
+        hashedPassword,
+        accessKey === process.env.ACCESS_KEY ? "admin" : "user"
+      ); // name, username, email, password
+      await UserController.#repo.createItem(user);
+      console.log(user);
       res.status(201).json({ message: "User created successfully" });
     } catch (e) {
       res.status(500).json({ message: "Server error", error: e.message });
@@ -53,14 +61,14 @@ class UserController {
 
   async loginUser(req, res) {
     const { username, email, password } = req.body;
-    if (!user.email || !user.username || !user.password)
-      return res.status().json({ message: "Missing required fields" });
+    if ((!email && !username) || !password)
+      return res.status(401).json({ message: "Missing required fields" });
     if (email)
-      if (!this.repo.userExistsByEmail(user.email))
-        return res.status().json({ message: "Invalid credentials" });
+      if (!UserController.#repo.userExistsByEmail(email))
+        return res.status(401).json({ message: "Invalid credentials" });
     // TODO: Add logic for signing in with username
 
-    const user = await this.repo.getUserByEmail(email);
+    const user = await UserController.#repo.getUserByEmail(email);
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -70,10 +78,10 @@ class UserController {
     try {
       const token = signToken(
         {
-          id: userID,
-          username: username,
-          email: email,
-          role: "user",
+          id: user.id,
+          username: user.name,
+          email,
+          role: user.role,
           isActive: true,
         },
         process.env.JWT_SECRET
@@ -88,7 +96,7 @@ class UserController {
   async getCurrentUser(req, res) {
     try {
       const id = req.user.id;
-      const user = await this.repo.getItemById(id);
+      const user = await UserController.#repo.getItemById(id);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -103,12 +111,12 @@ class UserController {
     try {
       const id = req.user.id;
       const updates = req.body;
-      const user = await this.repo.getItemById(id);
+      const user = await UserController.#repo.getItemById(id);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const updatedUser = this.repo.updateItemById(id, updates);
+      const updatedUser = UserController.#repo.updateItemById(id, updates);
       res
         .status(200)
         .json({ message: "User updated successfully", user: updatedUser });
@@ -118,4 +126,4 @@ class UserController {
   }
 }
 
-module.exports = UserController;
+module.exports = new UserController();

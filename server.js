@@ -10,7 +10,7 @@ require("dotenv").config({
 const path = require("path");
 
 // Local Imports
-// const publicRoutes = require("./routes/public");
+const publicRoutes = require("./routes/public");
 // const protectedRoutes = require("./routes/protected");
 // const adminRoutes = require("./routes/admin");
 const viewRoutes = require("./routes/views");
@@ -32,7 +32,7 @@ app.use(express.static(publicPath));
 app.use(viewRoutes);
 
 // API Routes
-// app.use("/api", publicRoutes);
+app.use("/api", publicRoutes);
 // app.use("/api", protectedRoutes);
 // app.use("/api/admin", adminRoutes);
 
