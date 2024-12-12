@@ -15,9 +15,7 @@ const path = require("path");
 const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
 const adminRoutes = require("./routes/admin");
-const serveHTML = require("./utils/helper");
-const { authMiddleware } = require("./middleware/auth");
-
+const viewRoutes = require("./routes/views");
 // Constants
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -31,17 +29,9 @@ app.use(cors());
 
 app.use(express.static(publicPath));
 
-// Public Page Routes
-app.get("/challenge", serveHTML("challenge"));
-app.get("/challenges", serveHTML("challenges"));
+app.use(viewRoutes);
 
-// Public API Routes
 app.use("/api", publicRoutes);
-
-// Protected API Routes
-app.use(authMiddleware);
-app.get("/profile", serveHTML("profile"));
-app.get("/auth", serveHTML("auth"));
 app.use("/api", protectedRoutes);
 app.use("/api/admin", adminRoutes);
 

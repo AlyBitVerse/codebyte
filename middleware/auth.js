@@ -15,6 +15,13 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
+const notAuthenticatedMiddleware = (req, res, next) => {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+  if (token)
+    return res.status(403).json({ message: "You are already authenticated" });
+  next();
+};
+
 const roleMiddleware = (requiredRoles = []) => {
   return (req, res, next) => {
     const user = req.user;
@@ -31,4 +38,4 @@ const roleMiddleware = (requiredRoles = []) => {
   };
 };
 
-module.exports = { authMiddleware, roleMiddleware };
+module.exports = { authMiddleware, roleMiddleware, notAuthenticatedMiddleware };
