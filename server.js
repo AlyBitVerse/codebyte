@@ -16,7 +16,11 @@ const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
 const adminRoutes = require("./routes/admin");
 const serveHTML = require("./utils/helper");
-const { authMiddleware } = require("./middleware/auth");
+const {
+  authMiddleware,
+  notAuthenticatedMi,
+  notAuthenticatedMiddlewareddleware,
+} = require("./middleware/auth");
 
 // Constants
 const PORT = process.env.PORT || 3000;
@@ -39,9 +43,10 @@ app.get("/challenges", serveHTML("challenges"));
 app.use("/api", publicRoutes);
 
 // Protected API Routes
+
+app.get("/profile", notAuthenticatedMiddleware, serveHTML("profile"));
+app.get("/auth", notAuthenticatedMiddleware, serveHTML("auth"));
 app.use(authMiddleware);
-app.get("/profile", serveHTML("profile"));
-app.get("/auth", serveHTML("auth"));
 app.use("/api", protectedRoutes);
 app.use("/api/admin", adminRoutes);
 
