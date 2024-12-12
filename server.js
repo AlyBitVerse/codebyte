@@ -21,6 +21,8 @@ const viewRoutes = require("./routes/views");
 const PORT = process.env.PORT || 3000;
 const app = express();
 const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
+const serveHTML = require("../utils/helper");
+const { authMiddleware } = require("./middleware/auth");
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -30,11 +32,17 @@ app.use(cors());
 
 app.use(express.static(publicPath));
 
-// Pages Routes
-app.use(viewRoutes);
+// Public Page Routes
+app.get("/challenge", serveHTML("challenge"));
+app.get("/challenges", serveHTML("challenges"));
 
-// API Routes
+// Public API Routes
 app.use("/api", publicRoutes);
+
+// Protected API Routes
+app.use(authMiddleware);
+app.get("/profile", serveHTML("profile"));
+app.get("/auth", serveHTML("auth"));
 app.use("/api", protectedRoutes);
 app.use("/api/admin", adminRoutes);
 
