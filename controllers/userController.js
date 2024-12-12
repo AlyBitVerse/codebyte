@@ -64,7 +64,7 @@ class UserController {
         name,
         email,
         hashedPassword,
-        accessKey === process.env.ACCESS_KEY ? "admin" : "user"
+        accessKey === process.env.ACCESS_KEY && accessKey ? "admin" : "user"
       );
       await UserController.#repo.createItem(user.toJSON());
       res.status(201).json({ message: "User created successfully" });

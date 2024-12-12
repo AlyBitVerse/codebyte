@@ -2,9 +2,11 @@
 const express = require("express");
 const cors = require("cors");
 // Configure env variables
-require("dotenv").config({
+const env = require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "dev"}.local`,
 });
+
+if (env.error) throw Error("Environment file is missing...");
 
 // Standard Modules
 const path = require("path");
