@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles/global.css" />
+    <link rel="stylesheet" href="../assets/styles/utils.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/queries.css" />
+    <title>Authentication Page</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../assets/styles/global.css" />
-  <link rel="stylesheet" href="../assets/styles/utils.css" />
-  <link rel="stylesheet" href="../assets/styles/style.css" />
-  <link rel="stylesheet" href="../assets/styles/queries.css" />
-  <title>Authentication Page</title>
-</head>
+  <body>
+    <div id="authContainer">
+      <!-- Login Form -->
+      <section id="login-view" class="auth-form">
+        <h1>Log <span>in</span></h1>
+        <form action="" class="flex col" id="login-form">
+          <input
+            type="text"
+            id="login-email-username"
+            placeholder="Email or Username"
+            required />
+          <input
+            type="password"
+            id="login-password"
+            placeholder="Password"
+            required />
+          <p>
+            Don't have an account ?
+            <a id="show-register" class="toggle-link">Sign up</a> <br />
+            <span>Forget your password ?</span>
+          </p>
+          <button type="submit" class="btn">Continue</button>
+        </form>
+      </section>
+      <!-- Register Form -->
+      <section id="register-view" class="auth-form hidden">
+        <h1>Sign <span>up</span></h1>
+        <form action="" class="flex col" id="register-form">
+          <input type="text" placeholder="Name" id="signup-name" required />
+          <input
+            type="text"
+            placeholder="User name"
+            id="signup-username"
+            required />
+          <input type="email" placeholder="Email" id="signup-email" required />
+          <input
+            type="password"
+            placeholder="Password"
+            id="signup-password"
+            required />
+          <input
+            type="password"
+            placeholder="Confirm the password"
+            id="signup-confirm-password"
+            required />
+          <div class="check">
+            <input type="checkbox" name="" id="terms" />
+            <label for="">
+              I agree to the <span>Terms&conditions</span> and
+              <span>Privacy Policy</span>
+            </label>
+          </div>
 
-<body>
-  <div id="authContainer">
-    <section id="login-form" class="auth-form">
-      <h1>Log <span>in</span></h1>
-      <form action="" class="flex col">
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Password" />
-        <p>
-          Don't have an account ? <a id="show-register" class="toggle-link">Sign up</a> <br />
-          <span>Forget your password ?</span>
-        </p>
-        <a class="btn">Continue</a>
-      </form>
-    </section>
-    <section id="register-form" class="auth-form hidden">
-      <h1>Sign <span>up</span></h1>
-      <form action="" class="flex col">
-        <input type="text" placeholder="Name" />
-        <input type="text" placeholder="User name" />
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Password" />
-        <input type="text" placeholder="Repeat the password" />
-        <div class="check">
-          <input type="checkbox" name="" id="" />
-          <label for="">
-            I agree to the <span>Terms&conditions</span> and
-            <span>Privacy Policy</span>
-          </label>
-        </div>
-
-        <a class="btn">Create account</a>
-        <a id="show-login" class="toggle-link">Log In</a>
-      </form>
-    </section>
-  </div>
-  <script type="module" src="../js/auth.js"></script>
-  <script src="https://kit.fontawesome.com/49f880beca.js" crossorigin="anonymous"></script>
-</body>
-
+          <button type="submit" class="btn" id="">Create account</button>
+          <a id="show-login"class="btn-1" >Log In</a>
+        </form>
+      </section>
+    </div>
+    <script type="module" src="../js/auth.js"></script>
+    <script
+      src="https://kit.fontawesome.com/49f880beca.js"
+      crossorigin="anonymous"></script>
+  </body>
 </html>
