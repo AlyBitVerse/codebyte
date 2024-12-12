@@ -168,7 +168,7 @@ async function test() {
   // challengeRepo.clearRepository();
 }
 
-test();
+// test();
 
 // Create Challenge Model
 // Add any required methods to the model or to the repo

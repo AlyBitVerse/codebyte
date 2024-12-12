@@ -15,14 +15,13 @@ const path = require("path");
 const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
 const adminRoutes = require("./routes/admin");
-const viewRoutes = require("./routes/views");
+const serveHTML = require("./utils/helper");
+const { authMiddleware } = require("./middleware/auth");
 
 // Constants
 const PORT = process.env.PORT || 3000;
 const app = express();
 const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
-const serveHTML = require("../utils/helper");
-const { authMiddleware } = require("./middleware/auth");
 
 app.use(express.urlencoded({ extended: false }));
 
