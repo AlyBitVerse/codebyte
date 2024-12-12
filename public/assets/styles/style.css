@@ -1,19 +1,22 @@
-.sign-up,
-.log-in {
+.auth-form {
+  display: none;
   width: 30rem;
-margin: auto;
- 
+  margin: auto;
 }
-.sign-up form,
-.log-in form {
+
+.auth-form:not(.hidden) {
+  display: block;
+}
+
+.auth-form form {
   margin-top: 2rem;
   padding: 2rem;
   gap: 2rem;
   box-shadow: 0.5px 3px 20px 1px var(--color-accent-primary);
   border-radius: 1rem;
 }
-.sign-up form input,
-.log-in form input {
+
+.auth-form input {
   font-size: 1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -21,11 +24,14 @@ margin: auto;
   box-shadow: 1px 3px 10px 0 var(--color-accent-primary);
 }
 
-.sign-up form .btn,
-.log-in form .btn {
+.toggle-link, .btn {
   background-color: var(--color-accent-primary);
   color: #fff;
   padding: 0.5rem;
   border-radius: 0.75rem;
   text-align: center;
+}
+
+.toggle-link {
+  cursor: pointer;
 }

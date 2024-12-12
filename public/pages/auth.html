@@ -1,19 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../assets/styles/global.css" />
-    <link rel="stylesheet" href="../assets/styles/utils.css" />
-    <link rel="stylesheet" href="../assets/styles/style.css" />
-    <link rel="stylesheet" href="../assets/styles/queries.css" />
-    <title>Authentication Page</title>
-  </head>
-  <body>
-    <div id="auth"></div>
-    <script type="module" src="../js/auth.js"></script>
-    <script
-      src="https://kit.fontawesome.com/49f880beca.js"
-      crossorigin="anonymous"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/styles/global.css" />
+  <link rel="stylesheet" href="../assets/styles/utils.css" />
+  <link rel="stylesheet" href="../assets/styles/style.css" />
+  <link rel="stylesheet" href="../assets/styles/queries.css" />
+  <title>Authentication Page</title>
+</head>
+
+<body>
+  <div id="authContainer">
+    <section id="login-form" class="auth-form">
+      <h1>Log <span>in</span></h1>
+      <form action="" class="flex col">
+        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Password" />
+        <p>
+          Don't have an account ? <a id="show-register" class="toggle-link">Sign up</a> <br />
+          <span>Forget your password ?</span>
+        </p>
+        <a class="btn">Continue</a>
+      </form>
+    </section>
+    <section id="register-form" class="auth-form hidden">
+      <h1>Sign <span>up</span></h1>
+      <form action="" class="flex col">
+        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="User name" />
+        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Password" />
+        <input type="text" placeholder="Repeat the password" />
+        <div class="check">
+          <input type="checkbox" name="" id="" />
+          <label for="">
+            I agree to the <span>Terms&conditions</span> and
+            <span>Privacy Policy</span>
+          </label>
+        </div>
+
+        <a class="btn">Create account</a>
+        <a id="show-login" class="toggle-link">Log In</a>
+      </form>
+    </section>
+  </div>
+  <script type="module" src="../js/auth.js"></script>
+  <script src="https://kit.fontawesome.com/49f880beca.js" crossorigin="anonymous"></script>
+</body>
+
 </html>
