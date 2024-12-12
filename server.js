@@ -2,17 +2,19 @@
 const express = require("express");
 const cors = require("cors");
 // Configure env variables
-require("dotenv").config({
+const env = require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "dev"}.local`,
 });
+
+if (env.error) throw Error("Environment file is missing...");
 
 // Standard Modules
 const path = require("path");
 
 // Local Imports
-// const publicRoutes = require("./routes/public");
-// const protectedRoutes = require("./routes/protected");
-// const adminRoutes = require("./routes/admin");
+const publicRoutes = require("./routes/public");
+const protectedRoutes = require("./routes/protected");
+const adminRoutes = require("./routes/admin");
 const viewRoutes = require("./routes/views");
 
 // Constants
@@ -32,9 +34,9 @@ app.use(express.static(publicPath));
 app.use(viewRoutes);
 
 // API Routes
-// app.use("/api", publicRoutes);
-// app.use("/api", protectedRoutes);
-// app.use("/api/admin", adminRoutes);
+app.use("/api", publicRoutes);
+app.use("/api", protectedRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use("*", (req, res) => {
   res.status(404).json({ message: "Route not found" });

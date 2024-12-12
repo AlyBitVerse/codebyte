@@ -11,11 +11,11 @@ router.use(authMiddleware);
 router.get("/me", userController.getCurrentUser);
 router.put("/me", userController.updateCurrentUser);
 
-router.post("/challenges", challengeController.createChallenge);
+// router.post("/challenges", challengeController.createChallenge);
 
-router.put("/challenges/:id", challengeController.updateChallenge); // must be same user that created the challenge or an admin (check)
-router.delete("/challenges/:id", challengeController.deleteChallenge); // must be same user that created the challenge or an admin (check)
+// router.put("/challenges/:id", challengeController.updateChallenge); // must be same user that created the challenge or an admin (check)
+// router.delete("/challenges/:id", challengeController.deleteChallenge); // must be same user that created the challenge or an admin (check)
 
-router.post("/challenges/:id/solve", challengeController.solveChallenge); // will use judge0 service
+// router.post("/challenges/:id/solve", challengeController.solveChallenge); // will use judge0 service
 
 module.exports = router;

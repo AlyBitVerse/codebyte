@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "creatorID": "creator1",
+    "title": "Reverse String",
+    "description": "Write a function that reverses a given string.",
+    "instructions": "function reverseString(str) { return str.split('').reverse().join(''); }",
+    "difficulty": "easy",
+    "solution": "function reverseString(str) { return str.split('').reverse().join(''); }",
+    "createdAt": "2024-12-10T17:55:12.689Z",
+    "status": "pending",
+    "approvedAt": "2024-12-10T17:55:12.696Z",
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "hello",
+        "expectedOutput": "olleh"
+      },
+      {
+        "input": "world",
+        "expectedOutput": "dlrow"
+      }
+    ],
+    "participants": {
+      "user1": {
+        "attempts": 2,
+        "successful": true
+      },
+      "user2": {
+        "attempts": 1,
+        "successful": false
+      }
+    },
+    "username": "alpha"
+  },
+  {
+    "id": 2,
+    "creatorID": "creator2",
+    "title": "Palindrome Check",
+    "description": "Create a function to check if a string is a palindrome.",
+    "instructions": "function isPalindrome(str) { return str === str.split('').reverse().join(''); }",
+    "difficulty": "medium",
+    "solution": "function isPalindrome(str) { return str === str.split('').reverse().join(''); }",
+    "createdAt": "2024-12-10T17:55:12.689Z",
+    "status": "pending",
+    "approvedAt": "2024-12-10T17:55:12.696Z",
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "madam",
+        "expectedOutput": true
+      },
+      {
+        "input": "hello",
+        "expectedOutput": false
+      }
+    ],
+    "participants": {
+      "user1": {
+        "attempts": 3,
+        "successful": true
+      },
+      "user3": {
+        "attempts": 1,
+        "successful": false
+      }
+    },
+    "username": "shero"
+  },
+  {
+    "id": 3,
+    "creatorID": "creator3",
+    "title": "Find Prime Numbers",
+    "description": "Write a function to find prime numbers up to a given number.",
+    "instructions": "function findPrimes(limit) { /* implementation here */ }",
+    "difficulty": "hard",
+    "solution": "function findPrimes(limit) { /* implementation here */ }",
+    "createdAt": "2024-12-10T17:55:12.689Z",
+    "status": "approved",
+    "approvedAt": "2024-12-10T17:55:12.696Z",
+    "approvedBy": "emao",
+    "testCases": [
+      {
+        "input": 10,
+        "expectedOutput": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "input": 20,
+        "expectedOutput": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19
+        ]
+      }
+    ],
+    "participants": {
+      "user2": {
+        "attempts": 1,
+        "successful": true
+      },
+      "user4": {
+        "attempts": 2,
+        "successful": false
+      }
+    }
+  },
+  {
+    "id": 5,
+    "creatorID": "creator5",
+    "title": "Sort Array",
+    "description": "Implement an algorithm to sort an array of numbers in ascending order.",
+    "instructions": "function sortArray(arr) { return arr.sort((a, b) => a - b); }",
+    "difficulty": "medium",
+    "solution": "function sortArray(arr) { return arr.sort((a, b) => a - b); }",
+    "createdAt": "2024-12-10T17:55:12.689Z",
+    "status": "approved",
+    "approvedAt": "2024-12-10T17:55:12.689Z",
+    "approvedBy": "admin2",
+    "testCases": [
+      {
+        "input": [
+          5,
+          3,
+          8,
+          1
+        ],
+        "expectedOutput": [
+          1,
+          3,
+          5,
+          8
+        ]
+      },
+      {
+        "input": [
+          12,
+          11,
+          15,
+          10
+        ],
+        "expectedOutput": [
+          10,
+          11,
+          12,
+          15
+        ]
+      }
+    ],
+    "participants": {
+      "user4": {
+        "attempts": 2,
+        "successful": true
+      },
+      "user1": {
+        "attempts": 1,
+        "successful": false
+      }
+    }
+  }
+]
