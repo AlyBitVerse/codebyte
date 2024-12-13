@@ -1,9 +1,13 @@
 const { verifyToken } = require("../utils/jwt");
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = (redirect=true) => (req, res, next) => {
   const token = req.cookies.token;
-  if (!token) return res.redirect("/auth");
-
+  if (!token) {
+    if(redirect)
+      return res.redirect("/auth");
+    else 
+      return next();
+  }
   try {
     const decoded = verifyToken(token, process.env.JWT_SECRET);
     req.user = decoded;

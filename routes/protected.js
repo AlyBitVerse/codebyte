@@ -5,7 +5,7 @@ const challengeController = require("../controllers/challengeController");
 const userController = require("../controllers/userController");
 const { authMiddleware } = require("../middleware/auth");
 
-router.use(authMiddleware);
+router.use(authMiddleware(true));
 
 router.get("/me", userController.getCurrentUser);
 router.put("/me", userController.updateCurrentUser);

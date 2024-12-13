@@ -6,7 +6,7 @@ const {
 } = require("../middleware/auth");
 const serveHTML = require("../utils/helper");
 
-router.get("/profile", authMiddleware, serveHTML("profile"));
+router.get("/profile", authMiddleware(), serveHTML("profile"));
 
 router.get("/auth", notAuthenticatedMiddleware, serveHTML("auth"));
 
