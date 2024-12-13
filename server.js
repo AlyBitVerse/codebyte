@@ -1,6 +1,7 @@
 // 3d Party Modules
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 // Configure env variables
 const env = require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "dev"}.local`,
@@ -20,6 +21,8 @@ const viewRoutes = require("./routes/views");
 const PORT = process.env.PORT || 3000;
 const app = express();
 const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
+
+app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: false }));
 
