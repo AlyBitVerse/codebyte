@@ -10,6 +10,8 @@ router.use(authMiddleware);
 router.get("/me", userController.getCurrentUser);
 router.put("/me", userController.updateCurrentUser);
 
+router.post("/logout", userController.logoutUser);
+
 // router.post("/challenges", challengeController.createChallenge);
 
 // router.put("/challenges/:id", challengeController.updateChallenge); // must be same user that created the challenge or an admin (check)

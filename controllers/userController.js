@@ -124,6 +124,29 @@ class UserController {
   /** 
    @Protected
    */
+  async logoutUser(req, res) {
+    try {
+      const user = await UserController.#repo.getItemById(req.user.id);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Strict",
+      });
+
+      res.status(200).json({ message: "Logout successful" });
+    } catch (e) {
+      res.status(500).json({ message: "Server error", error: e.message });
+    }
+  }
+
+  /** 
+   @Protected
+   */
   async getCurrentUser(req, res) {
     try {
       const user = await UserController.#repo.getItemById(req.user.id);
