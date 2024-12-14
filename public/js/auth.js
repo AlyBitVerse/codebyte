@@ -49,10 +49,6 @@ function login(e) {
 
     .then((data) => {
       console.log("data", data);
-      if (data) {
-        localStorage.setItem("token", data.token);
-        window.location.href = "/challenges";
-      } // save the token in localStorage
     })
     .catch((e) => console.log("Error", e));
 }
@@ -102,7 +98,6 @@ function register(e) {
   fetch(`${API_BASE_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-
     body: JSON.stringify(userData),
   })
     .then((res) => {

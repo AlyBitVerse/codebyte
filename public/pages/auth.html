@@ -8,16 +8,6 @@
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/queries.css" />
     <title>Authentication Page</title>
-    <script>
-      const token = localStorage.getItem("token");
-
-      if (token && token !== "undefined") {
-        console.log(token);
-        window.location.href = "/";
-      } else {
-        // Validate token...
-      }
-    </script>
   </head>
   <body>
     <div id="authContainer">
