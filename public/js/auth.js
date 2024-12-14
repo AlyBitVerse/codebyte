@@ -43,13 +43,18 @@ function login(e) {
     body: JSON.stringify(userData),
   })
     .then((res) => {
-      return res.json();
+      if (!res.ok) alert("Invalid email or password.");
+      else return res.json();
     })
+
     .then((data) => {
-      localStorage.setItem("token", data.token); // save the token in localStorage
-      window.location.href = "/challenges";
+      console.log("data", data);
+      if (data) {
+        localStorage.setItem("token", data.token);
+        window.location.href = "/challenges";
+      } // save the token in localStorage
     })
-    .catch((e) => console.log(e));
+    .catch((e) => console.log("Error", e));
 }
 
 // Email validation check regex pattern
@@ -97,7 +102,7 @@ function register(e) {
   fetch(`${API_BASE_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    
+
     body: JSON.stringify(userData),
   })
     .then((res) => {
@@ -110,10 +115,3 @@ function register(e) {
 
 document.getElementById("login-form").addEventListener("submit", login);
 document.getElementById("register-form").addEventListener("submit", register);
-
-
-const token = localStorage.getItem('token');
-   // "Authorization": `Bearer ${token}`
-  if(token){
-    // Send the request on the protected resource
-  }

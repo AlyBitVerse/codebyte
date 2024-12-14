@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/queries.css" />
     <title>Authentication Page</title>
-  </head>
+    <script>
+      const token = localStorage.getItem("token");
 
+      if (token && token !== "undefined") {
+        console.log(token);
+        window.location.href = "/";
+      } else {
+        // Validate token...
+      }
+    </script>
+  </head>
   <body>
     <div id="authContainer">
       <!-- Login Form -->
@@ -64,7 +73,7 @@
           </div>
 
           <button type="submit" class="btn" id="">Create account</button>
-          <a id="show-login"class="btn-1" >Log In</a>
+          <a id="show-login" class="btn-1">Log In</a>
         </form>
       </section>
     </div>
