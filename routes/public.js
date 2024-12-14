@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const authController = require("../controllers/authController");
 const challengeController = require("../controllers/challengeController");
+const userController = require("../controllers/userController");
+const { notAuthenticatedMiddleware, authMiddleware } = require("../middleware/auth");
 
-router.post("/register", authController.register);
+router.post("/register", notAuthenticatedMiddleware, userController.createUser);
 
-router.post("/login", authController.login);
+router.post("/login", notAuthenticatedMiddleware, userController.loginUser);
 
-router.get("/challenges", challengeController.getActiveChallenges);
+router.get("/challenges", authMiddleware(false), challengeController.getChallenges);
 
-router.get("/challenges/:id", challengeController.getActiveChallenge);
+// router.get("/challenges/:id", challengeController.getActiveChallenge);
 
 module.exports = router;

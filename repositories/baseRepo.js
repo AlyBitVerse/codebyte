@@ -18,13 +18,16 @@ class BaseRepository {
   }
 
   async updateItemById(id, newData) {
+    let updatedItem;
     try {
       await dbManager.readWrite(this.collectionName, (items) => {
         const itemIndex = items.findIndex((item) => item.id === id);
         if (itemIndex === -1) throw new Error("Item not found");
         items[itemIndex] = { ...items[itemIndex], ...newData };
+        updatedItem = items[itemIndex];
         return items; // IMPORTANT
       });
+      return updatedItem;
     } catch (error) {
       console.error(this.errMsg, error);
       throw error;
