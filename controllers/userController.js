@@ -14,32 +14,27 @@ class UserController {
   async createUser(req, res) {
     const { name, username, email, password, accessKey } = req.body;
 
-    // Check for required fields
     if (!name || !email || !username || !password) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    // Check if user already exists by email
     if (await UserController.#repo.userExistsByEmail(email)) {
       return res
         .status(409)
         .json({ message: "A user with the same email already exists" });
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Invalid email format" });
     }
 
-    // Password validation
     if (password.length < 8) {
       return res
         .status(400)
         .json({ message: "Password must be at least 8 characters long" });
     }
 
-    // Username validation
     if (!username || username.length < 3 || username.length > 15) {
       return res
         .status(400)
@@ -53,7 +48,6 @@ class UserController {
       });
     }
 
-    // Generate UID and hash password
     const userID = uid(16);
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -79,17 +73,14 @@ class UserController {
   async loginUser(req, res) {
     const { username, email, password } = req.body;
 
-    // Check for required fields
     if ((!email && !username) || !password) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    // Handle login with email
     if (email && !(await UserController.#repo.userExistsByEmail(email))) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Handle login with username (To be implemented)
     if (
       username &&
       !(await UserController.#repo.userExistsByUsername(username))
@@ -97,12 +88,10 @@ class UserController {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Retrieve user based on email (or username)
     const user = email
       ? await UserController.#repo.getUserByEmail(email)
       : await UserController.#repo.getUserByUsername(username);
 
-    // Password validation
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid password" });
@@ -120,7 +109,36 @@ class UserController {
         process.env.JWT_SECRET
       );
 
-      res.status(200).json({ message: "Login successful", token: token });
+      res.cookie("token", token, {
+        httpOnly: true, // Prevent client-side access
+        secure: process.env.NODE_ENV === "production", // Use HTTPS in production
+        maxAge: 3600000, // 1 hour
+      });
+
+      res.status(200).json({ message: "Login successful" });
+    } catch (e) {
+      res.status(500).json({ message: "Server error", error: e.message });
+    }
+  }
+
+  /** 
+   @Protected
+   */
+  async logoutUser(req, res) {
+    try {
+      const user = await UserController.#repo.getItemById(req.user.id);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Strict",
+      });
+
+      res.status(200).json({ message: "Logout successful" });
     } catch (e) {
       res.status(500).json({ message: "Server error", error: e.message });
     }
@@ -138,7 +156,7 @@ class UserController {
       }
 
       const instance = User.fromJSON(user);
-      res.status(200).json({ user: instance.toJSON(false) }); // Don't include password in response
+      res.status(200).json({ user: instance.toJSON(false) });
     } catch (e) {
       res.status(500).json({ message: "Server error", error: e.message });
     }
@@ -175,7 +193,7 @@ class UserController {
 
       res.status(200).json({
         message: "User updated successfully",
-        user: instance.toJSON(false), // Don't include password in response
+        user: instance.toJSON(false),
       });
     } catch (e) {
       res.status(500).json({ message: "Server error", error: e.message });
@@ -187,7 +205,6 @@ class UserController {
    */
   async getAllUsers(req, res) {
     try {
-      // Check if the requesting user is an admin
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
@@ -209,7 +226,6 @@ class UserController {
    */
   async getUserById(req, res) {
     try {
-      // Check if the requesting user is an admin
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
@@ -239,7 +255,6 @@ class UserController {
    */
   async updateUserById(req, res) {
     try {
-      // Check if the requesting user is an admin
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
@@ -275,7 +290,6 @@ class UserController {
    */
   async deleteUserById(req, res) {
     try {
-      // Check if the requesting user is an admin
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
