@@ -35,3 +35,59 @@
   border-radius: 50%;
 }
 /* End selections-menu */
+#challenges .card {
+  padding: var(--spacings-md) var(--spacings-s);
+  width: 60%;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+#challenges .card:hover {
+  background: #f7f7f7;
+}
+
+.card .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .title {
+  color: #303030;
+}
+
+.card .description p {
+  color: #4b4b4b;
+  line-height: 1.4;
+}
+
+.card .category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .tags {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card .tag {
+  background: #dddddd;
+  padding: 0.2rem 1rem;
+  font-size: 0.75rem;
+  border-radius: var(--spacings-xs);
+  margin-top: var(--spacings-s);
+  color: #303030;
+}
+
+.card .difficulty p {
+  font-size: 0.75rem;
+  color: green;
+}
+
+.ellipsis {
+  font-size: 2rem;
+  color: #a0a0a0;
+}

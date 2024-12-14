@@ -13,10 +13,8 @@ const path = require("path");
 // const publicRoutes = require("./routes/public");
 // const protectedRoutes = require("./routes/protected");
 // const adminRoutes = require("./routes/admin");
-<<<<<<< HEAD
-=======
+
 const viewRoutes = require("./routes/views");
->>>>>>> f8ed8f0 (Refactored views routes with a reusable serveHtml function)
 
 // Constants
 const PORT = process.env.PORT || 3000;
