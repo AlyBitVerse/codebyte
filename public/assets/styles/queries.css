@@ -1,0 +1,24 @@
+@media(max-width: 992px){
+      .selections-menu {
+        width: 15rem;
+      }
+}
+
+@media(max-width: 768px){
+      .selections-menu {
+        width: 10rem;
+      }
+      .selections-menu form select,
+.selections-menu form input {
+    font-size: 0.7rem;
+}
+}
+
+@media(max-width: 576px){
+      .selections-menu {
+        width: 17rem;
+      }
+      #challenges .flex {
+        justify-content: center;
+      }
+}

@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:3000/api";
 const selections = document.querySelector(".selections-menu");
 function renderMenu() {
   selections.innerHTML = `
-  <form class="flex col">
+  <form>
         <select name="lang" id="">
           <option value="">JavaScript</option>
           <option value="">Python</option>
@@ -12,6 +12,7 @@ function renderMenu() {
           <option value="">C++</option>
           <option value="">Java</option>
         </select>
+
         <select name="level" id="">
           <option value="">Very Easy</option>
           <option value="">Easy</option>
@@ -45,7 +46,7 @@ function renderChallenges() {
       console.log(data.challenges);
       data.challenges.forEach((challenge) => {
         challengesContainer.innerHTML += `
-        <div class="card">
+        <a href='#'><div class="card">
           <div class="header">
             <h2 class="title">${challenge.title}</h2>
             <i class="fa-solid fa-ellipsis ellipsis"></i>
@@ -69,6 +70,7 @@ function renderChallenges() {
             </div>
           </div>
         </div>
+        </a>
       `;
       });
     });
