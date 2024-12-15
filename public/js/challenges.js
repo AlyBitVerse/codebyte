@@ -65,9 +65,8 @@ function renderChallenges(withFilter = false) {
     .then((res) => {
       return res.json();
     })
-    .then((data) => {
-      console.log(data.challenges);
-      data.challenges.forEach((challenge) => {
+    .then((challenges) => {
+      challenges.forEach((challenge) => {
         challengesContainer.innerHTML += `
         <a href='#'><div class="card">
           <div class="header">
