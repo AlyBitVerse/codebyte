@@ -11,6 +11,7 @@ if (env.error) throw Error("Environment file is missing...");
 
 // Standard Modules
 const path = require("path");
+const fs = require("fs");
 
 // Local Imports
 const publicRoutes = require("./routes/public");
@@ -24,8 +25,10 @@ const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
 
 app.use(cookieParser());
 
+// For form submissions
 app.use(express.urlencoded({ extended: false }));
 
+// For regular requests
 app.use(express.json());
 
 app.use(cors());
