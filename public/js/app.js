@@ -5,9 +5,9 @@
 //   header.innerHTML = buildHeader();
 // })();
 // // IIFE -- Immediately Invoked Function Expression
-const isAuthenticate = true;
+const isAuthenticate = false;
 const Menu = document.querySelector(".menu");
-document.addEventListener("DOMContentLoaded", () => {
+function renderNavbar ()  {
   if (isAuthenticate) {
     Menu.innerHTML = ` <li>
               <a><i class="fa-solid fa-right-from-bracket"></i></a>
@@ -17,14 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
             </li>
             <li>0 xp</li>
             <li>
-              <a><img src="https://placehold.co/400" alt="" /></a>
+              <a href="../pages/profile.html"><img src="https://placehold.co/400" alt="" /></a>
             </li>`;
   } else {
     Menu.innerHTML = `<li>
-              <a>Login</a>
+              <a href="../pages/auth.html">Login</a>
             </li>
             <li>
-              <a>Signup</a>
+              <a href="../pages/auth.html">Signup</a>
             </li>`;
   }
-});
+};
+renderNavbar()

@@ -14,9 +14,15 @@ header nav .menu {
   gap: 2rem;
   align-items: center;
 }
+header nav ul {
+  font-size: var(--font-size-lg);
+}
 header nav ul li img {
   width: 3rem;
   border-radius: 50%;
+}
+header nav ul li a {
+  color: #fff;
 }
 header nav ul li :hover {
   color: var(--color-text);
