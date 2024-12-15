@@ -34,6 +34,8 @@ function renderMenu() {
       </form>`;
 }
 renderMenu();
+
+
 const challengesContainer = document.querySelector(".challenges");
 
 function renderChallenges() {
