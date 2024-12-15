@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1,
+    "creatorID": "user123",
+    "title": "Basic JavaScript Challenge",
+    "description": "Solve basic JavaScript problems.",
+    "instructions": "Complete the tasks below and submit your solution.",
+    "difficulty": "easy",
+    "solution": "solution_url_1",
+    "status": "active",
+    "createdAt": "2024-12-10T12:00:00Z",
+    "approvedAt": "2024-12-11T10:00:00Z",
+    "approvedBy": "admin123",
+    "testCases": [
+      {
+        "input": "5",
+        "output": "25"
+      },
+      {
+        "input": "10",
+        "output": "100"
+      }
+    ],
+    "participants": {
+      "user456": {
+        "attempts": 2,
+        "successful": true
+      },
+      "user789": {
+        "attempts": 1,
+        "successful": false
+      }
+    },
+    "tags": [
+      "javascript",
+      "beginner"
+    ]
+  },
+  {
+    "id": 2,
+    "creatorID": "user124",
+    "title": "Advanced JavaScript Challenge",
+    "description": "Solve advanced JavaScript problems.",
+    "instructions": "Complete the tasks below and submit your solution.",
+    "difficulty": "hard",
+    "solution": "solution_url_2",
+    "status": "pending",
+    "createdAt": "2024-12-05T08:00:00Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "3",
+        "output": "27"
+      },
+      {
+        "input": "7",
+        "output": "343"
+      }
+    ],
+    "participants": {
+      "user111": {
+        "attempts": 1,
+        "successful": false
+      }
+    },
+    "tags": [
+      "javascript",
+      "advanced"
+    ]
+  },
+  {
+    "id": 3,
+    "creatorID": "user125",
+    "title": "Python Data Structures",
+    "description": "Understand and implement various Python data structures.",
+    "instructions": "Complete the tasks below and submit your solution.",
+    "difficulty": "medium",
+    "solution": "solution_url_3",
+    "status": "active",
+    "createdAt": "2024-12-08T15:00:00Z",
+    "approvedAt": "2024-12-09T12:00:00Z",
+    "approvedBy": "admin124",
+    "testCases": [
+      {
+        "input": "[1, 2, 3]",
+        "output": "6"
+      },
+      {
+        "input": "[4, 5, 6]",
+        "output": "15"
+      }
+    ],
+    "participants": {
+      "user112": {
+        "attempts": 3,
+        "successful": true
+      },
+      "user113": {
+        "attempts": 2,
+        "successful": true
+      }
+    },
+    "tags": [
+      "python",
+      "data structures"
+    ]
+  }
+]
