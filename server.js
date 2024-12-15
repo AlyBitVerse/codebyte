@@ -11,13 +11,13 @@ if (env.error) throw Error("Environment file is missing...");
 
 // Standard Modules
 const path = require("path");
-const fs = require("fs");
 
 // Local Imports
 const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
 const adminRoutes = require("./routes/admin");
 const viewRoutes = require("./routes/views");
+
 // Constants
 const PORT = process.env.PORT || 3000;
 const app = express();

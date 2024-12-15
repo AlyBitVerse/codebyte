@@ -6,7 +6,7 @@ class Judge0 {
     this.cache = {
       languages: null,
       lastFetched: null,
-      cacheDuration: 60 * 60 * 1000,
+      cacheDuration: 60 * 60 * 1000 * 24,
     };
   }
 
@@ -34,11 +34,11 @@ class Judge0 {
 
       const languages = await response.json();
       this.cache.languages = languages;
-      this.cache.lastFetched = Date().now();
+      this.cache.lastFetched = Date.now();
 
       return languages;
     } catch (error) {
-      throw new Error("Error fetching languages from Judge0 API");
+      throw new Error("Error fetching languages from Judge0 API", error);
     }
   }
 }

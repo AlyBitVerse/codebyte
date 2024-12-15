@@ -24,4 +24,8 @@ router.get(
   challengeController.getChallenge
 );
 
+router.get(
+  "/challenges/languages",
+  challengeController.fetchSupportedLanguages
+);
 module.exports = router;

@@ -1,10 +1,11 @@
 const ChallengeRepository = require("../repositories/challengeRepo");
-
+const Judge0 = require("../services/Judge0");
 class ChallengeController {
   static #repo = new ChallengeRepository();
   static validKeys = [
     "creatorID",
     "language",
+    "category",
     "difficulty",
     "status",
     "createdAt",
@@ -47,7 +48,7 @@ class ChallengeController {
       if (value) {
         if (
           (ChallengeController.validKeys.includes(key) && isAdmin) ||
-          (["language", "difficulty", "tags"].includes(key) &&
+          (["language", "difficulty", "category"].includes(key) &&
             (!isAuthenticated || !isAdmin))
         ) {
           filteredChallenges = filteredChallenges.filter((challenge) => {
@@ -103,6 +104,14 @@ class ChallengeController {
         .status(500)
         .json({ message: "An error occurred while fetching the challenge." });
     }
+  }
+
+  /**
+   * @Universal
+   */
+  async fetchSupportedLanguages(req, res) {
+    const languages = await Judge0.fetchLanguages();
+    return res.status(200).json(languages);
   }
 }
 

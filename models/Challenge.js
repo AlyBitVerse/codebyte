@@ -6,6 +6,7 @@ class Challenge {
     description,
     instructions,
     language,
+    category,
     difficulty,
     solution,
     status = "pending",
@@ -22,6 +23,7 @@ class Challenge {
     this.description = description;
     this.instructions = instructions;
     this.language = language;
+    this.category = category;
     this.difficulty = difficulty;
     this.solution = solution;
     this.createdAt = createdAt;
