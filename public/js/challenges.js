@@ -4,104 +4,72 @@ const selections = document.querySelector(".selections-menu");
 
 function renderMenu() {
   selections.innerHTML = `
-  <form id="query-form" class="flex col">
-        <select name="language" id="lang-selection">
-          <option value="javascript">JavaScript</option>
-          <option value="python">Python</option>
-          <option value="php">PHP</option>
-          <option value="c#">C#</option>
-          <option value="c++">C++</option>
-          <option value="java">Java</option>
-        </select>
-        <select name="difficulty" id="difficulty-selection">
-          <option value="very-easy">Very Easy</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Meduim</option>
-          <option value="hard">Hard</option>
-          <option value="very-hard">Very Hard</option>
-          <option value="expert">Expert</option>
+  <form>
+        <select name="lang" id="languages">
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="PHP">PHP</option>
+          <option value="C#">C#</option>
+          <option value="C++">C++</option>
+          <option value="Java">Java</option>
         </select>
 
-        <input list="Tags" name="tags"  placeholder="Tags (Optional)" />
-        <datalist id="tags">
-          <option value="Loops">
-          <option value="Conditions">
-          <option value="Functions">
-          <option value="Strings">
-          <option value="Arrays">
-          <option value="Numbers">
+        <select name="level" id="difficulties">
+          <option value="Very Easy">Very Easy</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Meduim</option>
+          <option value="Hard">Hard</option>
+          <option value="Very Hard">Very Hard</option>
+          <option value="Expert">Expert</option>
+        </select>
+
+        <input list="Tags" name="tags" id="tags" placeholder="Tags (Optional)" />
+        <datalist id="categories">
+          <option value="Loops"></option>
+          <option value="Conditions"></option>
+          <option value="Functions"></option>
+          <option value="Strings"></option>
+          <option value="Arrays"></option>
+          <option value="Numbers"></option>
         </datalist>
-        <img id="someImage" src="https://placehold.co/400" alt=""  >
-        <button ></button>
+        <img id='button' src="https://placehold.co/400" alt="">
       </form>`;
 }
 renderMenu();
 
-
-// const lang_selection = document.getElementById("lang-selection");
-// const difficulty_selection = document.getElementById("difficulty-selection");
-// const tagList = document.getElementById("tags");
-
-function filterChallenges() {
-  const language = document.getElementById("lang-selection").value ?? "";
-  const difficulty = document.getElementById("difficulty-selection").value ?? "";
-  const tags = tdocument.getElementById("tags").options.value ?? "";
-  // tag1,tag2,tag3
-  console.log(language, difficulty, tags);
-  fetch(`${API_BASE_URL}/challenges?key=dsadasda&difficulty=`)
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data.challenges);
-      challengesContainer.innerHTML = "";
-      data.challenges.forEach((challenge) => {
-        challengesContainer.innerHTML += `
-        <div class="card">
-          <div class="header">
-            <h2 class="title">${challenge.title}</h2>
-            <i class="fa-solid fa-ellipsis ellipsis"></i>
-          </div>
-          <div class="description">
-            <p>
-              ${challenge.description.slice(0, 150)} ...
-            </p>
-          </div>
-          <div class="category">
-            <div class="tags">
-              ${challenge.tags
-                .map((tag) => `<div class="tag">${tag}</div>`)
-                .join("")}
-            </div>
-            <div class="difficulty">
-              <p class="${challenge.difficulty}">${
-          challenge.difficulty.charAt(0).toUpperCase() +
-          challenge.difficulty.slice(1)
-        }</p>
-            </div>
-          </div>
-        </div>
-      `;
-      });
-    });
-}
-// 127.0.0:3000/api/challenges?language=javascript&difficulty=hard&tags=web,algorithms,beginner
-
-document
-  .getElementById("someImage")
-  .addEventListener("click", filterChallenges);
 const challengesContainer = document.querySelector(".challenges");
 
-function renderChallenges() {
-  fetch(`${API_BASE_URL}/challenges`)
+function renderChallenges(withFilter = false) {
+  challengesContainer.innerHTML = "";
+
+  const languageInput = document.getElementById("languages");
+  const difficultyInput = document.getElementById("difficulties");
+  const tagsInput = document.getElementById("categories");
+
+  let url = `${API_BASE_URL}/challenges?`;
+
+  if (withFilter) {
+    const language = languageInput.value ?? ""; // javascript
+    const difficulty = difficultyInput.value.toLowerCase() ?? ""; // easy
+    const tags = tagsInput.options.value ?? ""; // beginner,algorithms
+
+    // tags = ['javascript', 'beginner'].join(',') // 'javascript,beginner'
+
+    // tags = 'beginner'
+
+    // category
+
+    url += difficulty ? `difficulty=${difficulty}` : "";
+  }
+
+  fetch(url)
     .then((res) => {
       return res.json();
     })
-    .then((data) => {
-      console.log(data.challenges);
-      data.challenges.forEach((challenge) => {
+    .then((challenges) => {
+      challenges.forEach((challenge) => {
         challengesContainer.innerHTML += `
-        <div class="card">
+        <a href='#'><div class="card">
           <div class="header">
             <h2 class="title">${challenge.title}</h2>
             <i class="fa-solid fa-ellipsis ellipsis"></i>
@@ -125,9 +93,13 @@ function renderChallenges() {
             </div>
           </div>
         </div>
+        </a>
       `;
       });
     });
 }
 
 renderChallenges();
+document.getElementById("button").addEventListener("click", () => {
+  renderChallenges(true);
+});

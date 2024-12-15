@@ -17,6 +17,7 @@ const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
 const adminRoutes = require("./routes/admin");
 const viewRoutes = require("./routes/views");
+
 // Constants
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -24,8 +25,10 @@ const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
 
 app.use(cookieParser());
 
+// For form submissions
 app.use(express.urlencoded({ extended: false }));
 
+// For regular requests
 app.use(express.json());
 
 app.use(cors());
