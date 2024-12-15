@@ -4,26 +4,26 @@ const selections = document.querySelector(".selections-menu");
 function renderMenu() {
   selections.innerHTML = `
   <form>
-        <select name="lang" id="">
-          <option value="">JavaScript</option>
-          <option value="">Python</option>
-          <option value="">PHP</option>
-          <option value="">C#</option>
-          <option value="">C++</option>
-          <option value="">Java</option>
+        <select name="lang" id="languages">
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="PHP">PHP</option>
+          <option value="C#">C#</option>
+          <option value="C++">C++</option>
+          <option value="Java">Java</option>
         </select>
 
-        <select name="level" id="">
-          <option value="">Very Easy</option>
-          <option value="">Easy</option>
-          <option value="">Meduim</option>
-          <option value="">Hard</option>
-          <option value="">Very Hard</option>
-          <option value="">Expert</option>
+        <select name="level" id="difficulties">
+          <option value="Very Easy">Very Easy</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Meduim</option>
+          <option value="Hard">Hard</option>
+          <option value="Very Hard">Very Hard</option>
+          <option value="Expert">Expert</option>
         </select>
 
         <input list="Tags" name="tags" id="tags" placeholder="Tags (Optional)" />
-        <datalist id="Tags">
+        <datalist id="categories">
           <option value="Loops"></option>
           <option value="Conditions"></option>
           <option value="Functions"></option>
@@ -31,14 +31,37 @@ function renderMenu() {
           <option value="Arrays"></option>
           <option value="Numbers"></option>
         </datalist>
-        <img src="https://placehold.co/400" alt="">
+        <img id='button' src="https://placehold.co/400" alt="">
       </form>`;
 }
 renderMenu();
+
 const challengesContainer = document.querySelector(".challenges");
 
-function renderChallenges() {
-  fetch(`${API_BASE_URL}/challenges`)
+function renderChallenges(withFilter = false) {
+  challengesContainer.innerHTML = "";
+
+  const languageInput = document.getElementById("languages");
+  const difficultyInput = document.getElementById("difficulties");
+  const tagsInput = document.getElementById("categories");
+
+  let url = `${API_BASE_URL}/challenges?`;
+
+  if (withFilter) {
+    const language = languageInput.value ?? ""; // javascript
+    const difficulty = difficultyInput.value.toLowerCase() ?? ""; // easy
+    const tags = tagsInput.options.value ?? ""; // beginner,algorithms
+
+    // tags = ['javascript', 'beginner'].join(',') // 'javascript,beginner'
+
+    // tags = 'beginner'
+
+    // category
+
+    url += difficulty ? `difficulty=${difficulty}` : "";
+  }
+
+  fetch(url)
     .then((res) => {
       return res.json();
     })
@@ -77,3 +100,6 @@ function renderChallenges() {
 }
 
 renderChallenges();
+document.getElementById("button").addEventListener("click", () => {
+  renderChallenges(true);
+});
