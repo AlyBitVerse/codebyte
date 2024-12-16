@@ -5,12 +5,12 @@ class Challenge {
     title,
     description,
     instructions,
-    language,
+    language, // {id: 102, name: "JavaScript (Node.js 22.08.0)"}
     category,
     difficulty,
-    solution,
     status = "pending",
     createdAt,
+    updatedAt,
     approvedAt = null,
     approvedBy = null, //Should be user instance or ID?
     testCases = [],
@@ -25,8 +25,8 @@ class Challenge {
     this.language = language;
     this.category = category;
     this.difficulty = difficulty;
-    this.solution = solution;
     this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
     this.status = status;
     this.approvedAt = approvedAt;
     this.approvedBy = approvedBy;

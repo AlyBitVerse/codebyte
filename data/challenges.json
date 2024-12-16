@@ -5,7 +5,10 @@
     "title": "fizzbuzz challenge",
     "description": "write a program that prints numbers 1 to 100. for multiples of 3, print 'fizz', and for multiples of 5, print 'buzz'.",
     "instructions": "implement logic to check divisors and print appropriate strings.",
-    "language": "javascript",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
     "category": "algorithms",
     "difficulty": "easy",
     "solution": "for (let i = 1; i <= 100; i++) { console.log(i % 3 === 0 ? (i % 5 === 0 ? 'FizzBuzz' : 'Fizz') : i % 5 === 0 ? 'Buzz' : i); }",
@@ -41,7 +44,10 @@
     "title": "palindrome checker",
     "description": "write a function to determine if a string is a palindrome.",
     "instructions": "implement logic to check if a string reads the same backward and forward.",
-    "language": "python",
+    "language": {
+      "id": 100,
+      "name": "Python (3.12.5)"
+    },
     "category": "strings",
     "difficulty": "easy",
     "solution": "def is_palindrome(s): return s == s[::-1]",
@@ -76,7 +82,10 @@
     "title": "binary search",
     "description": "implement a binary search algorithm.",
     "instructions": "the function should find a target value in a sorted array.",
-    "language": "c++",
+    "language": {
+      "id": 54,
+      "name": "C++ (GCC 9.2.0)"
+    },
     "category": "search",
     "difficulty": "medium",
     "solution": "int binarySearch(int arr[], int size, int target) { int left = 0, right = size - 1; while (left <= right) { int mid = left + (right - left) / 2; if (arr[mid] == target) return mid; else if (arr[mid] < target) left = mid + 1; else right = mid - 1; } return -1; }",
@@ -112,7 +121,10 @@
     "title": "factorial calculator",
     "description": "write a program to compute the factorial of a number.",
     "instructions": "use recursion or loops to calculate factorial values.",
-    "language": "java",
+    "language": {
+      "id": 91,
+      "name": "Java (JDK 17.0.6)"
+    },
     "category": "mathematics",
     "difficulty": "medium",
     "solution": "int factorial(int n) { return n == 0 ? 1 : n * factorial(n - 1); }",
@@ -142,7 +154,10 @@
     "title": "prime number checker",
     "description": "write a function to check if a number is prime.",
     "instructions": "implement logic to determine primality of a given number.",
-    "language": "javascript",
+    "language": {
+      "id": 93,
+      "name": "JavaScript (Node.js 18.15.0)"
+    },
     "category": "mathematics",
     "difficulty": "easy",
     "solution": "function isPrime(n) { if (n <= 1) return false; for (let i = 2; i <= Math.sqrt(n); i++) { if (n % i === 0) return false; } return true; }",
@@ -170,6 +185,137 @@
       "math",
       "conditions",
       "loops"
+    ]
+  },
+  {
+    "id": 6,
+    "creatorID": "user128",
+    "title": "merge sort implementation",
+    "description": "Implement the merge sort algorithm to sort an array of integers.",
+    "instructions": "Use the divide-and-conquer approach to recursively sort subarrays and merge them.",
+    "language": {
+      "id": 92,
+      "name": "Python (3.11.2)"
+    },
+    "category": "sorting",
+    "difficulty": "medium",
+    "status": "active",
+    "createdAt": "2024-06-15",
+    "approvedAt": "2024-06-16",
+    "approvedBy": "admin789",
+    "testCases": [
+      {
+        "input": "[5, 3, 8, 4, 2]",
+        "output": "[2, 3, 4, 5, 8]"
+      },
+      {
+        "input": "[10, 1, 7, 3]",
+        "output": "[1, 3, 7, 10]"
+      }
+    ],
+    "participants": {},
+    "tags": [
+      "sorting",
+      "divide and conquer",
+      "arrays"
+    ]
+  },
+  {
+    "id": 7,
+    "creatorID": "user129",
+    "title": "balanced parentheses",
+    "description": "Check if a string contains balanced parentheses.",
+    "instructions": "Use a stack data structure to ensure that parentheses are properly opened and closed.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "stacks and queues",
+    "difficulty": "easy",
+    "status": "active",
+    "createdAt": "2024-06-16",
+    "approvedAt": "2024-06-17",
+    "approvedBy": "admin456",
+    "testCases": [
+      {
+        "input": "\"(())\"",
+        "output": "true"
+      },
+      {
+        "input": "\"(()))\"",
+        "output": "false"
+      }
+    ],
+    "participants": {},
+    "tags": [
+      "stacks",
+      "strings",
+      "conditions"
+    ]
+  },
+  {
+    "id": 8,
+    "creatorID": "user130",
+    "title": "fibonacci sequence",
+    "description": "Generate the first N numbers of the Fibonacci sequence.",
+    "instructions": "Use recursion or iteration to compute the Fibonacci sequence.",
+    "language": {
+      "id": 76,
+      "name": "C++ (Clang 7.0.1)"
+    },
+    "category": "recursion",
+    "difficulty": "medium",
+    "status": "active",
+    "createdAt": "2024-06-17",
+    "approvedAt": "2024-06-18",
+    "approvedBy": "admin123",
+    "testCases": [
+      {
+        "input": "5",
+        "output": "0 1 1 2 3"
+      },
+      {
+        "input": "7",
+        "output": "0 1 1 2 3 5 8"
+      }
+    ],
+    "participants": {},
+    "tags": [
+      "recursion",
+      "loops",
+      "math"
+    ]
+  },
+  {
+    "id": 9,
+    "creatorID": "user131",
+    "title": "graph cycle detection",
+    "description": "Detect if a graph contains a cycle using DFS.",
+    "instructions": "Implement a depth-first search algorithm to check for cycles in an undirected graph.",
+    "language": {
+      "id": 62,
+      "name": "Java (OpenJDK 13.0.1)"
+    },
+    "category": "graph algorithms",
+    "difficulty": "hard",
+    "status": "active",
+    "createdAt": "2024-06-18",
+    "approvedAt": "2024-06-19",
+    "approvedBy": "admin456",
+    "testCases": [
+      {
+        "input": "Graph: 3 vertices, Edges: (0-1), (1-2), (2-0)",
+        "output": "true"
+      },
+      {
+        "input": "Graph: 3 vertices, Edges: (0-1), (1-2)",
+        "output": "false"
+      }
+    ],
+    "participants": {},
+    "tags": [
+      "graph",
+      "dfs"
     ]
   }
 ]

@@ -18,14 +18,15 @@ router.get(
   challengeController.getChallenges
 );
 
+// router.get(
+//   "/challenges/languages",
+//   challengeController.fetchSupportedLanguages
+// );
+
 router.get(
   "/challenges/:id",
   authMiddleware(false),
   challengeController.getChallenge
 );
 
-router.get(
-  "/challenges/languages",
-  challengeController.fetchSupportedLanguages
-);
 module.exports = router;
