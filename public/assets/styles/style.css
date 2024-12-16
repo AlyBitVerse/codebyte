@@ -1,73 +1,57 @@
 /* Start authContainer */
 
-#authContainer h1{
-  font-size: var( --font-size-2x);
+#authContainer h1 {
+  font-size: var(--font-size-2x);
   color: var(--color-accent-primary);
-
 }
-#authContainer h1 span{
+#authContainer h1 span {
   color: var(--color-accent-secondary);
 }
-.auth-form p, .auth-form .check{
-  font-size: var( --font-size-lg)
+.auth-form p,
+.auth-form .check {
+  font-size: var(--font-size-md);
 }
-
 .auth-form {
   display: none;
   width: 80%;
   max-width: 30rem;
-  margin: 4rem auto;
+  margin: 1rem auto;
 }
-
 .auth-form:not(.hidden) {
   display: block;
 }
-
 .auth-form form {
   margin-top: 2rem;
-  padding: 2rem;
-  gap: 2rem;
+  padding: 3.5rem 2rem;
+  gap: 1.5rem;
   border-radius: 1rem;
   border: solid 1px #777;
- 
 }
-.auth-form form input{
+.auth-form form input {
   border: 1px solid #777;
   font-size: var(--font-size-md);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
 }
-
 .auth-form span {
   color: var(--color-accent-primary);
 }
-
 .toggle-link {
   color: var(--color-accent-secondary);
   font-weight: 700;
   cursor: pointer;
 }
 .auth-form .btn {
-  padding: 1rem;
-  border-radius: 0.75rem;
-  text-align: center;
-  font-size: 1.25rem;
   font-weight: 500;
-  transition: 0.3s ease;
+  border: solid 0.25rem var(--color-accent-primary);
+  transition: all 0.03s ease;
 }
-.auth-form .btn-1 {
-  border: solid .25rem var(--color-accent-primary);
+.auth-form .outlined {
+  border: solid 0.25rem var(--color-accent-primary);
   color: var(--color-accent-primary);
-  border-radius: 0.75rem;
-  padding: 0.5rem;
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s ease;
+  background: none;
 }
-.auth-form .btn-1:hover, .auth-form .btn:hover{
-  transform: scale(1.02);
+.auth-form .btn:hover {
+  transform: scale(1.01);
 }
-
 /* End authContainer */

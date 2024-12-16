@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-.flex.row.wrap { 
+.flex.row.wrap {
   flex-wrap: wrap;
 }
 
@@ -25,9 +25,10 @@
 /* Start btn style */
 .btn {
   cursor: pointer;
-  padding: var(--spacing-s);
+  padding: 0.75rem 0.5rem;
   border: none;
-  border-radius: var(--spacing-s);
+  border-radius: var(--spacings-xs);
+  font-size: 1.15rem;
 }
 .btn.primary {
   color: #fff;
