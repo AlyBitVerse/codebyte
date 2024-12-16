@@ -96,8 +96,11 @@ function renderMenu() {
         .join("")}
     </select>
     <button id="select-btn">Select</button>
-    <img id="someImage" src="https://placehold.co/400" alt="" />
-  </form>`;
+     </form>
+     <div class="circular-progress" data-inner-circle-color="lightgrey" data-percentage="80" data-progress-color="crimson" data-bg-color="black">
+  <div class="inner-circle"></div>
+  <p class="percentage">Level 0</p>
+</div> `;
   const section = document.getElementById("languages");
   languageList.forEach((language) => {
     section.innerHTML += `<option value="${language.name}">${language.name}</option>`;
