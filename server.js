@@ -42,7 +42,7 @@ app.use("/api", protectedRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.use("*", (req, res) => {
-  res.status(404).json({ message: "Route not found" });
+  res.status(404).send("<h1>404 Page Not Found :(</h1>");
   // Maybe also send a file 404 page
 });
 
