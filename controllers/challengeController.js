@@ -244,6 +244,38 @@ class ChallengeController {
       });
     }
   }
+
+  /**
+   * @Protected
+   */
+  async deleteChallenge(req, res) {
+    const userID = req.user.id;
+    const isAdmin = req.user.role === "admin";
+    const challengeID = req.params.id;
+
+    try {
+      if (!isAdmin) {
+        const user = await userRepo.getItemById(userID);
+
+        if (!user.createdChallenges.includes(challengeID)) {
+          return res.status(403).json({
+            message: "You are not authorized to delete this challenge.",
+          });
+        }
+      }
+
+      await ChallengeController.#repo.deleteItemById(challengeID);
+
+      return res.status(200).json({
+        message: "Challenge deleted successfully.",
+      });
+    } catch (err) {
+      console.error("Error deleting challenge:", err);
+      return res.status(500).json({
+        message: "An unexpected error occurred while deleting the challenge.",
+      });
+    }
+  }
 }
 
 module.exports = new ChallengeController();
