@@ -10,7 +10,9 @@
     "updatedAt": "2024-12-11T15:21:21.807Z",
     "rank": 0,
     "points": 0,
-    "createdChallenges": [],
+    "createdChallenges": [
+      "3f2c8d1a5e7b4f60"
+    ],
     "solvedChallenges": [],
     "badges": []
   },

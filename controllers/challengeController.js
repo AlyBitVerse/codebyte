@@ -1,7 +1,9 @@
 const { uid } = require("uid");
 const Challenge = require("../models/Challenge");
 const ChallengeRepository = require("../repositories/challengeRepo");
+const UserRepository = require("../repositories/userRepo");
 const Judge0 = require("../services/Judge0");
+const userRepo = new UserRepository();
 class ChallengeController {
   static #repo = new ChallengeRepository();
   static validKeys = [
@@ -12,6 +14,7 @@ class ChallengeController {
     "difficulty",
     "status",
     "createdAt",
+    "updatedBy",
     "approvedAt",
     "approvedBy",
     "participants",
@@ -120,7 +123,6 @@ class ChallengeController {
   /**
    * @Protected
    */
-
   async createChallenge(req, res) {
     // Get current user id from req
     const creatorID = req.user.id;
@@ -177,6 +179,69 @@ class ChallengeController {
       res.status(201).json({ message: "Challenge created successfully" });
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  /**
+   * @Protected
+   */
+  async updateChallenge(req, res) {
+    const userID = req.user.id;
+    const isAdmin = req.user.role === "admin";
+    const challengeID = req.params.id;
+
+    const validFields = [
+      "language",
+      "category",
+      "title",
+      "description",
+      "instructions",
+      "difficulty",
+      "testCases",
+    ];
+
+    try {
+      if (!isAdmin) {
+        const user = await userRepo.getItemById(userID);
+
+        if (!user.createdChallenges.includes(challengeID)) {
+          return res.status(403).json({
+            message: "You are not authorized to update this challenge.",
+          });
+        }
+      }
+
+      const invalidFields = Object.keys(req.body).filter(
+        (key) => !validFields.includes(key)
+      );
+      if (invalidFields.length > 0) {
+        return res.status(400).json({
+          message: "Invalid fields provided.",
+          invalidFields,
+        });
+      }
+
+      // Update the challenge
+      const updatedData = {
+        ...req.body,
+        updatedAt: new Date(),
+        updatedBy: userID,
+      };
+
+      const challenge = await ChallengeController.#repo.updateItemById(
+        challengeID,
+        updatedData
+      );
+
+      return res.status(200).json({
+        message: "Challenge updated successfully.",
+        challenge,
+      });
+    } catch (err) {
+      console.error("Error updating challenge:", err);
+      return res.status(500).json({
+        message: "An unexpected error occurred while updating the challenge.",
+      });
     }
   }
 }

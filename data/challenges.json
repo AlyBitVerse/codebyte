@@ -108,7 +108,7 @@
     },
     "category": "arrays",
     "difficulty": "easy",
-    "status": "active",
+    "status": "pending",
     "createdAt": "2024-06-10",
     "approvedAt": null,
     "approvedBy": null,
@@ -155,6 +155,146 @@
       "string",
       "split",
       "javascript"
+    ]
+  },
+  {
+    "id": "1a3f7d4e2c8b9f05",
+    "creatorID": "f52aedb2826e76f5",
+    "title": "palindrome checker",
+    "description": "Write a function that checks if a given string is a palindrome.",
+    "instructions": "Given a string, return true if it is a palindrome (ignoring case and non-alphanumeric characters), and false otherwise.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "strings",
+    "difficulty": "medium",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "f52aedb2826e76f5",
+    "testCases": [
+      {
+        "input": "\"racecar\"",
+        "output": "true"
+      },
+      {
+        "input": "\"hello\"",
+        "output": "false"
+      },
+      {
+        "input": "\"A man, a plan, a canal, Panama\"",
+        "output": "true"
+      }
+    ]
+  },
+  {
+    "id": "3f2c8d1a5e7b4f60",
+    "creatorID": "d72e81db283eaaf9",
+    "title": "merge sorted arrays",
+    "description": "Write a program to merge two sorted arrays into one sorted array.",
+    "instructions": "Given two arrays of integers sorted in ascending order, return a single merged array that is also sorted in ascending order.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "arrays",
+    "difficulty": "medium",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "d72e81db283eaaf9",
+    "testCases": [
+      {
+        "input": "[1, 3, 5], [2, 4, 6]",
+        "output": "[1, 2, 3, 4, 5, 6]"
+      },
+      {
+        "input": "[10, 20], [5, 15, 25]",
+        "output": "[5, 10, 15, 20, 25]"
+      }
+    ],
+    "updatedAt": "2024-12-17T21:57:12.430Z"
+  },
+  {
+    "id": "7e5d9b3a4c8f1a62",
+    "creatorID": "b11d751010d0cc29",
+    "title": "binary tree depth",
+    "description": "Write a program to calculate the maximum depth of a binary tree.",
+    "instructions": "Given a binary tree, return the maximum depth of the tree. The depth of a binary tree is the number of nodes along the longest path from the root to a leaf.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "data structures",
+    "difficulty": "hard",
+    "status": "pending",
+    "createdAt": "2024-06-11",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "{\"val\": 1, \"left\": {\"val\": 2}, \"right\": {\"val\": 3}}",
+        "output": "2"
+      },
+      {
+        "input": "{\"val\": 1, \"left\": {\"val\": 2, \"left\": {\"val\": 4}}, \"right\": {\"val\": 3}}",
+        "output": "3"
+      }
+    ]
+  },
+  {
+    "id": "9b4d8e2c3a7f0b16",
+    "creatorID": "f52aedb2826e76f5",
+    "title": "knapsack problem",
+    "description": "Solve the 0/1 knapsack problem using dynamic programming.",
+    "instructions": "Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "algorithms",
+    "difficulty": "expert",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "f52aedb2826e76f5",
+    "testCases": [
+      {
+        "input": "{\"weights\": [1, 2, 3], \"values\": [10, 20, 30], \"capacity\": 5}",
+        "output": "50"
+      },
+      {
+        "input": "{\"weights\": [4, 2, 3], \"values\": [50, 20, 30], \"capacity\": 4}",
+        "output": "50"
+      }
+    ]
+  },
+  {
+    "id": "0b4d7e3c2a9f1b45",
+    "creatorID": "d72e81db283eaaf9",
+    "title": "find first missing positive",
+    "description": "Write a program to find the smallest missing positive integer in an unsorted array.",
+    "instructions": "Given an unsorted array, find the smallest missing positive integer in O(n) time and using constant space.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "algorithms",
+    "difficulty": "expert",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "d72e81db283eaaf9",
+    "testCases": [
+      {
+        "input": "[1, 2, 0]",
+        "output": "3"
+      },
+      {
+        "input": "[3, 4, -1, 1]",
+        "output": "2"
+      }
     ]
   }
 ]
