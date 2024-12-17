@@ -1,6 +1,7 @@
 // 3d Party Modules
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 // Configure env variables
 const env = require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "dev"}.local`,
@@ -15,38 +16,28 @@ const path = require("path");
 const publicRoutes = require("./routes/public");
 const protectedRoutes = require("./routes/protected");
 const adminRoutes = require("./routes/admin");
-const serveHTML = require("./utils/helper");
-const {
-  authMiddleware,
-  notAuthenticatedMi,
-  notAuthenticatedMiddlewareddleware,
-} = require("./middleware/auth");
+const viewRoutes = require("./routes/views");
 
 // Constants
 const PORT = process.env.PORT || 3000;
 const app = express();
 const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
 
+app.use(cookieParser());
+
+// For form submissions
 app.use(express.urlencoded({ extended: false }));
 
+// For regular requests
 app.use(express.json());
 
 app.use(cors());
 
 app.use(express.static(publicPath));
 
-// Public Page Routes
-app.get("/challenge", serveHTML("challenge"));
-app.get("/challenges", serveHTML("challenges"));
+app.use(viewRoutes);
 
-// Public API Routes
 app.use("/api", publicRoutes);
-
-// Protected API Routes
-
-app.get("/profile", notAuthenticatedMiddleware, serveHTML("profile"));
-app.get("/auth", notAuthenticatedMiddleware, serveHTML("auth"));
-app.use(authMiddleware);
 app.use("/api", protectedRoutes);
 app.use("/api/admin", adminRoutes);
 
