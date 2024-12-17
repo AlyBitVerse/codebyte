@@ -43,7 +43,7 @@ class BaseRepository {
       if (!item) throw new Error(`Cannot get item by id ${id}`);
       return item;
     } catch (error) {
-      // console.error(this.errMsg, error);
+      console.error(this.errMsg, error);
       throw error;
     }
   }

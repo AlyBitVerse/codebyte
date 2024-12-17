@@ -1,3 +1,5 @@
+const { uid } = require("uid");
+const Challenge = require("../models/Challenge");
 const ChallengeRepository = require("../repositories/challengeRepo");
 const Judge0 = require("../services/Judge0");
 class ChallengeController {
@@ -6,6 +8,7 @@ class ChallengeController {
     "creatorID",
     "language",
     "category",
+    "updatedAt",
     "difficulty",
     "status",
     "createdAt",
@@ -81,7 +84,7 @@ class ChallengeController {
       }
 
       const challenge = await ChallengeController.#repo.getItemById(
-        parseInt(challengeId)
+        challengeId
       );
 
       if (!challenge) {
@@ -112,6 +115,69 @@ class ChallengeController {
   async fetchSupportedLanguages(req, res) {
     const languages = await Judge0.fetchLanguages();
     return res.status(200).json(languages);
+  }
+
+  /**
+   * @Protected
+   */
+
+  async createChallenge(req, res) {
+    // Get current user id from req
+    const creatorID = req.user.id;
+    // Check authority
+    const isAdmin = req.user.role === "admin";
+    // Create a new Challenge id
+    const challengeID = uid(16);
+    // Validations
+    const {
+      title,
+      description,
+      language,
+      category,
+      instructions,
+      difficulty,
+      testCases,
+      tags,
+    } = req.body;
+    if (!title) res.status(400).json({ message: "Title is required" });
+    if (!description)
+      res.status(400).json({ message: "Description is required" });
+    if (!language) res.status(400).json({ message: "Language is required" });
+    if (!category) res.status(400).json({ message: "Category is required" });
+    if (!instructions)
+      res.status(400).json({ message: "Instructions are required" });
+    if (!difficulty)
+      res.status(400).json({ message: "Difficulty is required" });
+    if (!testCases.length)
+      res
+        .status(400)
+        .json({ message: "A minimum of 1 test case is required." });
+    // Create a new Challenge object
+    const challenge = new Challenge(
+      challengeID,
+      creatorID,
+      title,
+      description,
+      instructions,
+      language,
+      category,
+      difficulty,
+      isAdmin ? "active" : "pending",
+      new Date(),
+      new Date(),
+      isAdmin ? new Date() : null,
+      isAdmin ? req.user.id : null,
+      testCases,
+      {},
+      tags
+    );
+    // Serialize and add the new challenge to the challenges collection
+    try {
+      await ChallengeController.#repo.createItem(challenge);
+      res.status(201).json({ message: "Challenge created successfully" });
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
