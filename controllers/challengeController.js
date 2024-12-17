@@ -173,9 +173,16 @@ class ChallengeController {
       {},
       tags
     );
-    // Serialize and add the new challenge to the challenges collection
+
     try {
       await ChallengeController.#repo.createItem(challenge);
+
+      const creator = await userRepo.getItemById(creatorID);
+      const modifiedChallenges = creator.createdChallenges;
+      modifiedChallenges.push(challengeID);
+      await userRepo.updateItemById(creatorID, {
+        createdChallenges: modifiedChallenges,
+      });
       res.status(201).json({ message: "Challenge created successfully" });
     } catch (err) {
       console.log(err);

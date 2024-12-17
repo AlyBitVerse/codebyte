@@ -296,5 +296,35 @@
         "output": "2"
       }
     ]
+  },
+  {
+    "id": "c4408603ab1e02dc",
+    "creatorID": "b11d751010d0cc29",
+    "title": "Number Sorting Challenge",
+    "description": "Sort an array of numbers in ascending order.",
+    "instructions": "### Instructions\n- Implement a function that takes an array of numbers as input.\n- Sort the numbers in ascending order and return the sorted array.\n\n### Example\n```javascript\nsortNumbers([3, 1, 2]); // [1, 2, 3]```",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "sorting algorithms",
+    "difficulty": "medium",
+    "createdAt": "2024-12-17T23:36:38.153Z",
+    "updatedAt": "2024-12-17T23:36:38.153Z",
+    "status": "pending",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "[3, 1, 2]",
+        "output": "[1, 2, 3]"
+      },
+      {
+        "input": "[10, 20, 5, 40, 30]",
+        "output": "[5, 10, 20, 30, 40]"
+      }
+    ],
+    "participants": {},
+    "tags": []
   }
 ]
