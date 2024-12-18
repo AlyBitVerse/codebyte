@@ -25,10 +25,12 @@
 /* Start btn style */
 .btn {
   cursor: pointer;
-  padding: var(--spacing-s);
+  padding: 0.5rem;
   border: none;
-  border-radius: var(--spacing-s);
+  border-radius: var(--spacings-xs);
+  font-size: 1.15rem;
 }
+
 .btn.primary {
   color: #fff;
   background-color: var(--color-accent-primary);
