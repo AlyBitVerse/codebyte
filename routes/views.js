@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {
-  notAuthenticatedMiddleware,
-  authMiddleware,
-} = require("../middleware/auth");
+const { notAuthenticatedMiddleware, authMiddleware } = require("../middleware/auth");
 const serveHTML = require("../utils/helper");
 const ChallengeRepository = require("../repositories/challengeRepo");
 const challengeRepo = new ChallengeRepository();
@@ -29,5 +26,6 @@ router.get(
   serveHTML("challenge")
 );
 router.get("/challenges", serveHTML("challenges"));
+router.get("/new-challenge", serveHTML("new-challenge"));
 
 module.exports = router;
