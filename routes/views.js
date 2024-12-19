@@ -29,4 +29,4 @@ router.get("/challenges", serveHTML("challenges"));
 router.get("/new-challenge", authMiddleware(true), serveHTML("new-challenge"));
 
 module.exports = router;
-p;
+
