@@ -37,6 +37,7 @@ function login(e) {
 
   fetch(`${API_BASE_URL}/login`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -50,7 +51,7 @@ function login(e) {
     .then((data) => {
       console.log("data", data);
     })
-    .catch((e) => console.log("Error", e));
+    .catch((err) => console.log("Error", err));
 }
 
 // Email validation check regex pattern
@@ -70,9 +71,7 @@ function register(e) {
   const username = document.getElementById("signup-username").value;
   const email = document.getElementById("signup-email").value;
   const password = document.getElementById("signup-password").value;
-  const confirmPassword = document.getElementById(
-    "signup-confirm-password"
-  ).value;
+  const confirmPassword = document.getElementById("signup-confirm-password").value;
 
   if (!name || !password || !email || !username) {
     return alert("Missing requireed fields");
@@ -106,7 +105,7 @@ function register(e) {
     .then((data) => {
       console.log(data);
     })
-    .catch(error=>console.log(error))
+    .catch((error) => console.log(error));
 }
 
 document.getElementById("login-form").addEventListener("submit", login);
