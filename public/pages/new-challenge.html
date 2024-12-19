@@ -12,7 +12,7 @@
         <h1>Create Your Coding Challenge</h1>
         <p>Design a coding challenge and share it with the community</p>
       </div>
-      <form action="" class="challenge-form">
+      <form action="/challenges" method="post" class="challenge-form">
         <!-- Challenge Title -->
         <div class="form-group">
           <label for="challenge-title">Challenge Title <span class="required">*</span></label>
@@ -97,33 +97,33 @@
           <h2>Test Cases</h2>
           <div class="test-case-header">
             <div class="test-case-item">Input</div>
-            <div class="test-case-item">Input Type</div>
+            <!-- <div class="test-case-item">Input Type</div> -->
             <div class="test-case-item">Output</div>
-            <div class="test-case-item">Output Type</div>
+            <!-- <div class="test-case-item">Output Type</div> -->
           </div>
           <div class="test-case">
             <div class="test-case-body">
               <div class="test-case-item">
                 <input type="text" placeholder="Enter Input" />
               </div>
-              <div class="test-case-item">
+              <!-- <div class="test-case-item">
                 <select>
                   <option value="text">Text</option>
                   <option value="number">Number</option>
                   <option value="date">Date</option>
                 </select>
-              </div>
+              </div> -->
               <div class="test-case-item">
                 <input type="text" placeholder="Enter Output" />
               </div>
 
-              <div class="test-case-item">
+              <!-- <div class="test-case-item">
                 <select>
                   <option value="text">Text</option>
                   <option value="number">Number</option>
                   <option value="date">Date</option>
                 </select>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -131,7 +131,7 @@
           <button class="add-test-case-btn">+ Test Case</button>
 
           <!-- Submit Button -->
-          <button class="submit-btn">Submit</button>
+          <button type="submit" class="submit-btn">Submit</button>
         </div>
       </form>
     </div>

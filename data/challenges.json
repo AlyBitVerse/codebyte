@@ -326,5 +326,34 @@
     ],
     "participants": {},
     "tags": []
+  },
+  {
+    "id": "0fceba7b041d02dc",
+    "creatorID": "b11d751010d0cc29",
+    "title": "Reverse a string",
+    "description": "Write a function that reverses a string",
+    "instructions": "# Reverse a string- Write a function that takes a string as an input and returns the reverse of that string.## Example## __`reverseStr('abcde')` &rarr; `edcba`__",
+    "language": "javascript",
+    "category": "strings",
+    "difficulty": "easy",
+    "createdAt": "2024-12-19T02:08:28.463Z",
+    "updatedAt": "2024-12-19T02:08:28.463Z",
+    "status": "pending",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "inputs": [
+          "abc",
+          "def"
+        ],
+        "outputs": [
+          "cba",
+          "fed"
+        ]
+      }
+    ],
+    "participants": {},
+    "tags": []
   }
 ]

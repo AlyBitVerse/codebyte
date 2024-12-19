@@ -26,6 +26,7 @@ router.get(
   serveHTML("challenge")
 );
 router.get("/challenges", serveHTML("challenges"));
-router.get("/new-challenge", serveHTML("new-challenge"));
+router.get("/new-challenge", authMiddleware(true), serveHTML("new-challenge"));
 
 module.exports = router;
+p;

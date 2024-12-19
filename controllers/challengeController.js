@@ -27,9 +27,7 @@ class ChallengeController {
    */
   async getChallenges(req, res) {
     const allChallenges = await ChallengeController.#repo.getAllItems();
-    const activeChallenges = allChallenges.filter(
-      (challenge) => challenge.status === "active"
-    );
+    const activeChallenges = allChallenges.filter((challenge) => challenge.status === "active");
 
     const isAuthenticated = req.user;
     const isAdmin = isAuthenticated ? req.user.role === "admin" : false;
@@ -38,30 +36,21 @@ class ChallengeController {
     if (!req.query || Object.keys(req.query).length === 0) {
       return res
         .status(200)
-        .json(
-          (isAuthenticated && !isAdmin) || !isAuthenticated
-            ? activeChallenges
-            : allChallenges
-        );
+        .json((isAuthenticated && !isAdmin) || !isAuthenticated ? activeChallenges : allChallenges);
     }
 
     let filteredChallenges =
-      (isAuthenticated && !isAdmin) || !isAuthenticated
-        ? activeChallenges
-        : allChallenges;
+      (isAuthenticated && !isAdmin) || !isAuthenticated ? activeChallenges : allChallenges;
 
     Object.entries(req.query).forEach(([key, value]) => {
       if (value) {
         if (
           (ChallengeController.validKeys.includes(key) && isAdmin) ||
-          (["language", "difficulty", "category"].includes(key) &&
-            (!isAuthenticated || !isAdmin))
+          (["language", "difficulty", "category"].includes(key) && (!isAuthenticated || !isAdmin))
         ) {
           filteredChallenges = filteredChallenges.filter((challenge) => {
             if (Array.isArray(challenge[key])) {
-              return challenge[key].some((tag) =>
-                value.split(",").includes(tag)
-              );
+              return challenge[key].some((tag) => value.split(",").includes(tag));
             }
             return challenge[key] === value;
           });
@@ -86,9 +75,7 @@ class ChallengeController {
         return res.status(400).json({ message: "Challenge ID is required." });
       }
 
-      const challenge = await ChallengeController.#repo.getItemById(
-        challengeId
-      );
+      const challenge = await ChallengeController.#repo.getItemById(challengeId);
 
       if (!challenge) {
         return res.status(404).json({ message: "Challenge not found." });
@@ -101,14 +88,10 @@ class ChallengeController {
       if (challenge.status === "active") {
         return res.status(200).json(challenge);
       } else {
-        return res
-          .status(500)
-          .json({ message: "An error occurred while fetching the challenge." });
+        return res.status(500).json({ message: "An error occurred while fetching the challenge." });
       }
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "An error occurred while fetching the challenge." });
+      return res.status(500).json({ message: "An error occurred while fetching the challenge." });
     }
   }
 
@@ -131,29 +114,15 @@ class ChallengeController {
     // Create a new Challenge id
     const challengeID = uid(16);
     // Validations
-    const {
-      title,
-      description,
-      language,
-      category,
-      instructions,
-      difficulty,
-      testCases,
-      tags,
-    } = req.body;
-    if (!title) res.status(400).json({ message: "Title is required" });
-    if (!description)
-      res.status(400).json({ message: "Description is required" });
-    if (!language) res.status(400).json({ message: "Language is required" });
-    if (!category) res.status(400).json({ message: "Category is required" });
-    if (!instructions)
-      res.status(400).json({ message: "Instructions are required" });
-    if (!difficulty)
-      res.status(400).json({ message: "Difficulty is required" });
-    if (!testCases.length)
-      res
-        .status(400)
-        .json({ message: "A minimum of 1 test case is required." });
+    const { title, description, language, category, instructions, difficulty, testCases, tags } = req.body;
+    if (!title) return res.status(400).json({ message: "Title is required" });
+    if (!description) return res.status(400).json({ message: "Description is required" });
+    if (!language) return res.status(400).json({ message: "Language is required" });
+    if (!category) return res.status(400).json({ message: "Category is required" });
+    if (!instructions) return res.status(400).json({ message: "Instructions are required" });
+    if (!difficulty) return res.status(400).json({ message: "Difficulty is required" });
+    if (!testCases.length || !Array.isArray(JSON.parse(testCases)))
+      return res.status(400).json({ message: "A minimum of 1 test case is required." });
     // Create a new Challenge object
     const challenge = new Challenge(
       challengeID,
@@ -169,7 +138,7 @@ class ChallengeController {
       new Date(),
       isAdmin ? new Date() : null,
       isAdmin ? req.user.id : null,
-      testCases,
+      JSON.parse(testCases),
       {},
       tags
     );
@@ -183,7 +152,7 @@ class ChallengeController {
       await userRepo.updateItemById(creatorID, {
         createdChallenges: modifiedChallenges,
       });
-      res.status(201).json({ message: "Challenge created successfully" });
+      res.status(201).json({ message: "Challenge created successfully", id: challengeID });
     } catch (err) {
       console.log(err);
     }
@@ -218,9 +187,7 @@ class ChallengeController {
         }
       }
 
-      const invalidFields = Object.keys(req.body).filter(
-        (key) => !validFields.includes(key)
-      );
+      const invalidFields = Object.keys(req.body).filter((key) => !validFields.includes(key));
       if (invalidFields.length > 0) {
         return res.status(400).json({
           message: "Invalid fields provided.",
@@ -235,10 +202,7 @@ class ChallengeController {
         updatedBy: userID,
       };
 
-      const challenge = await ChallengeController.#repo.updateItemById(
-        challengeID,
-        updatedData
-      );
+      const challenge = await ChallengeController.#repo.updateItemById(challengeID, updatedData);
 
       return res.status(200).json({
         message: "Challenge updated successfully.",
