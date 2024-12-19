@@ -1,7 +1,6 @@
 /* Start Header */
 header {
-  background-color: var(--color-accent-secondary);
-  width: 100%;
+  background-color: #1d1d1d;
 }
 header nav {
   justify-content: space-between;
@@ -10,7 +9,8 @@ header nav {
   padding: 1rem 0;
 }
 header nav #logo {
-  font-size: var(--font-size-lg);
+  font-size: 1.7rem;
+  font-family: "ubuntu mono";
 }
 header nav #logo span {
   color: var(--color-accent-quaternary);
@@ -34,7 +34,7 @@ header nav ul li {
   align-items: center;
 }
 
-header nav ul li a {
+header nav a {
   color: #fff;
 }
 
@@ -61,4 +61,53 @@ header nav ul li a i {
   color: var(--color-text);
   cursor: pointer;
 }
+
+#sideNav{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  background: #171717;
+  top: 0;
+  right: 0;
+  transition:  0.5s;
+ 
+}
+
+#sideNav #close-sideMenu{
+  position: absolute;
+  top: 0;
+  left: 25px;
+  font-size: 36px;
+  margin-right: 50px;
+}
+
+#sideNav a{ 
+  color: #d1d1d1;
+  opacity: 0;  
+}
+  
+#sideNav div a{  
+  display: inline-block;
+  padding: 1rem 2rem;
+}
+
+#sideNav div {
+  margin-top: 4rem;
+  width: 25rem;
+  transition: 0.3s;
+  font-size: var(--font-size-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+#sideNav a:hover{
+  color: #fff;
+}
+
+#sideNav i{
+  font-size: var(--font-size-md);
+  margin-right: 1rem;
+}
+
+
 /* End Header */
