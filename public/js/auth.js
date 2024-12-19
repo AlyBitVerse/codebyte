@@ -105,7 +105,8 @@ function register(e) {
     })
     .then((data) => {
       console.log(data);
-    });
+    })
+    .catch(error=>console.log(error))
 }
 
 document.getElementById("login-form").addEventListener("submit", login);
