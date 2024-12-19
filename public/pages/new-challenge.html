@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New challenge</title>
+    <link rel="stylesheet" href="../assets/styles/new-challenge.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-header">
+        <h1>Create Your Coding Challenge</h1>
+        <p>Design a coding challenge and share it with the community</p>
+      </div>
+      <form action="" class="challenge-form">
+        <!-- Challenge Title -->
+        <div class="form-group">
+          <label for="challenge-title">Challenge Title <span class="required">*</span></label>
+          <input
+            type="text"
+            id="challenge-title"
+            name="challenge-title"
+            placeholder="Enter a concise challenge title"
+            required
+          />
+        </div>
+        <!-- Challenge Description -->
+        <div class="form-group">
+          <label for="challenge-description">Short Description <span class="required">*</span></label>
+          <textarea
+            type="text"
+            id="challenge-description"
+            name="challenge-description"
+            placeholder="Write a short, engaging summary (max 3 lines)..."
+            rows="3"
+            required
+          ></textarea>
+          <small>Keep it brief! This will appear on the challenge card.</small>
+        </div>
+        <!-- Programming Language -->
+        <div class="form-group">
+          <label for="challenge-language">Programming Language <span class="required">*</span></label>
+          <select id="challenge-language" name="challenge-language" required>
+            <option value="" disabled selected>Select a programming language</option>
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="csharp">C#</option>
+            <option value="cpp">C++</option>
+            <option value="ruby">Ruby</option>
+            <option value="rust">Rust</option>
+            <option value="c">C</option>
+          </select>
+        </div>
+        <!-- Category -->
+        <div class="form-group">
+          <label for="challenge-category">Category <span class="required">*</span></label>
+          <select id="challenge-category" name="challenge-category" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="algorithms">Algorithms</option>
+            <option value="strings">Strings</option>
+            <option value="arrays">Arrays</option>
+            <option value="data structures">Data Structures</option>
+            <option value="sorting">Sorting</option>
+          </select>
+        </div>
+        <!-- Difficulty -->
+        <div class="form-group">
+          <label for="challenge-category">Difficulty Level <span class="required">*</span></label>
+          <div class="button-group">
+            <input type="radio" id="difficulty-easy" name="difficulty" value="easy" required />
+            <label for="difficulty-easy">Easy</label>
+            <input type="radio" id="difficulty-medium" name="difficulty" value="medium" />
+            <label for="difficulty-medium">Medium</label>
+            <input type="radio" id="difficulty-hard" name="difficulty" value="hard" />
+            <label for="difficulty-hard">Hard</label>
+            <input type="radio" id="difficulty-expert" name="difficulty" value="expert" />
+            <label for="difficulty-expert">Expert</label>
+          </div>
+        </div>
+        <!-- Instructions -->
+        <div class="form-group">
+          <label for="challenge-instructions"
+            >Instructions (Markdown Supported) <span class="required">*</span></label
+          >
+          <textarea
+            id="challenge-instructions"
+            name="challenge-instructions"
+            rows="6"
+            placeholder="Write detailed instructions in Markdown..."
+            required
+          ></textarea>
+          <button type="button" id="preview-btn" class="btn btn-secondary">Preview Markdown</button>
+          <div id="markdown-preview" class="markdown-preview"></div>
+        </div>
+        <div class="test-cases-section">
+          <h2>Test Cases</h2>
+          <div class="test-case-header">
+            <div class="test-case-item">Input</div>
+            <div class="test-case-item">Input Type</div>
+            <div class="test-case-item">Output</div>
+            <div class="test-case-item">Output Type</div>
+          </div>
+          <div class="test-case">
+            <div class="test-case-body">
+              <div class="test-case-item">
+                <input type="text" placeholder="Enter Input" />
+              </div>
+              <div class="test-case-item">
+                <select>
+                  <option value="text">Text</option>
+                  <option value="number">Number</option>
+                  <option value="date">Date</option>
+                </select>
+              </div>
+              <div class="test-case-item">
+                <input type="text" placeholder="Enter Output" />
+              </div>
+
+              <div class="test-case-item">
+                <select>
+                  <option value="text">Text</option>
+                  <option value="number">Number</option>
+                  <option value="date">Date</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Test Case Button -->
+          <button class="add-test-case-btn">+ Test Case</button>
+
+          <!-- Submit Button -->
+          <button class="submit-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script src="../js/new-challenge.js"></script>
+  </body>
+</html>

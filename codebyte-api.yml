@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  title: Coding Challenge Platform API
+  version: 1.0.0
+  description: API for managing users, challenges, leaderboards, and administrative tasks.
+
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  # ====================== User Authentication ======================
+  /users/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "201":
+          description: User registered successfully.
+
+  /users/login:
+    post:
+      summary: Log in an existing user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        "200":
+          description: User logged in and token generated.
+
+  /users/logout:
+    post:
+      summary: Log out a user
+      responses:
+        "204":
+          description: User logged out successfully.
+
+  /users/refresh-token:
+    post:
+      summary: Refresh authentication token
+      responses:
+        "200":
+          description: Token refreshed successfully.
+
+  # ====================== User Profile Management ======================
+  /users/{userId}:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    get:
+      summary: Get user profile details
+      responses:
+        "200":
+          description: User details retrieved.
+    patch:
+      summary: Update user profile details
+      responses:
+        "200":
+          description: User details updated.
+    delete:
+      summary: Delete a user account
+      responses:
+        "204":
+          description: User deleted successfully.
+
+  /users/{userId}/challenges:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    get:
+      summary: Get challenges attempted or solved by the user
+      responses:
+        "200":
+          description: List of user's challenges.
+
+  /users/{userId}/favorite:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    post:
+      summary: Mark a challenge as favorite
+      responses:
+        "200":
+          description: Challenge marked as favorite.
+
+  /users/{userId}/favorites:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    get:
+      summary: Retrieve user's favorite challenges
+      responses:
+        "200":
+          description: List of favorite challenges retrieved.
+
+  # ====================== Challenge Management ======================
+  /challenges:
+    get:
+      summary: Retrieve all challenges with filters
+      parameters:
+        - name: difficulty
+          in: query
+          description: Filter challenges by difficulty
+          schema:
+            type: string
+        - name: tag
+          in: query
+          description: Filter challenges by tag
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of challenges retrieved.
+    post:
+      summary: Create a new challenge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChallengeInput"
+      responses:
+        "201":
+          description: Challenge created successfully.
+
+  /challenges/{challengeId}:
+    parameters:
+      - $ref: "#/components/parameters/ChallengeId"
+    get:
+      summary: Retrieve challenge details
+      responses:
+        "200":
+          description: Challenge details retrieved.
+    put:
+      summary: Fully update a challenge
+      responses:
+        "200":
+          description: Challenge updated successfully.
+    patch:
+      summary: Partially update a challenge
+      responses:
+        "200":
+          description: Challenge partially updated.
+    delete:
+      summary: Delete a challenge
+      responses:
+        "204":
+          description: Challenge deleted successfully.
+
+  /challenges/{challengeId}/submit:
+    post:
+      summary: Submit a solution for a challenge
+      responses:
+        "200":
+          description: Solution submitted successfully.
+
+  /challenges/{challengeId}/test:
+    post:
+      summary: Test a solution for a challenge
+      responses:
+        "200":
+          description: Solution tested successfully.
+
+  /challenges/{challengeId}/results:
+    get:
+      summary: Retrieve results of a submitted solution
+      responses:
+        "200":
+          description: Results retrieved successfully.
+
+  /challenges/{challengeId}/stats:
+    get:
+      summary: Retrieve statistics for a challenge
+      responses:
+        "200":
+          description: Challenge statistics retrieved.
+
+  /challenges/tags:
+    get:
+      summary: Get a list of available tags
+      responses:
+        "200":
+          description: List of tags retrieved.
+
+  # ====================== Leaderboard and Analytics ======================
+  /leaderboard:
+    get:
+      summary: Retrieve the global leaderboard
+      responses:
+        "200":
+          description: Global leaderboard retrieved successfully.
+
+  /challenges/{challengeId}/leaderboard:
+    get:
+      summary: Retrieve leaderboard for a specific challenge
+      responses:
+        "200":
+          description: Challenge-specific leaderboard retrieved.
+
+  /users/{userId}/stats:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    get:
+      summary: Retrieve user statistics
+      responses:
+        "200":
+          description: User statistics retrieved.
+
+  # ====================== Admin Endpoints ======================
+  /admin/challenges:
+    post:
+      summary: Create a new challenge (Admin)
+      responses:
+        "201":
+          description: Challenge created successfully.
+
+  /admin/challenges/{challengeId}:
+    delete:
+      summary: Remove a challenge (Admin)
+      responses:
+        "204":
+          description: Challenge removed.
+
+  /admin/users:
+    get:
+      summary: View all users (Admin)
+      responses:
+        "200":
+          description: List of users retrieved.
+
+  /admin/users/{userId}:
+    delete:
+      summary: Delete a user (Admin)
+      responses:
+        "204":
+          description: User deleted successfully.
+
+  /admin/stats:
+    get:
+      summary: Retrieve platform-level statistics
+      responses:
+        "200":
+          description: Platform statistics retrieved.
+
+components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+    ChallengeId:
+      name: challengeId
+      in: path
+      required: true
+      schema:
+        type: string
+
+  schemas:
+    UserInput:
+      type: object
+      properties:
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    LoginInput:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    ChallengeInput:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        difficulty:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string

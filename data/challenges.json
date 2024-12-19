@@ -1,109 +1,330 @@
 [
   {
-    "id": 1,
-    "creatorID": "user123",
-    "title": "Basic JavaScript Challenge",
-    "description": "Solve basic JavaScript problems.",
-    "instructions": "Complete the tasks below and submit your solution.",
+    "id": "c3a9b7d4e1f230a2",
+    "creatorID": "f52aedb2826e76f5",
+    "title": "fizzbuzz challenge",
+    "description": "Write a program that prints numbers from 1 to 100. For multiples of 3, print 'Fizz', and for multiples of 5, print 'Buzz'. For numbers that are multiples of both, print 'FizzBuzz'.",
+    "instructions": "Implement logic to check divisors and print appropriate strings based on conditions.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "algorithms",
     "difficulty": "easy",
-    "solution": "solution_url_1",
     "status": "active",
-    "createdAt": "2024-12-10T12:00:00Z",
-    "approvedAt": "2024-12-11T10:00:00Z",
-    "approvedBy": "admin123",
+    "createdAt": "2024-06-10",
+    "approvedAt": "2024-06-11",
+    "approvedBy": "f52aedb2826e76f5",
     "testCases": [
       {
-        "input": "5",
-        "output": "25"
+        "input": "15",
+        "output": "FizzBuzz"
       },
       {
-        "input": "10",
-        "output": "100"
-      }
-    ],
-    "participants": {
-      "user456": {
-        "attempts": 2,
-        "successful": true
+        "input": "3",
+        "output": "Fizz"
       },
-      "user789": {
-        "attempts": 1,
-        "successful": false
+      {
+        "input": "5",
+        "output": "Buzz"
+      },
+      {
+        "input": "7",
+        "output": "7"
       }
-    },
-    "tags": [
-      "javascript",
-      "beginner"
     ]
   },
   {
-    "id": 2,
-    "creatorID": "user124",
-    "title": "Advanced JavaScript Challenge",
-    "description": "Solve advanced JavaScript problems.",
-    "instructions": "Complete the tasks below and submit your solution.",
-    "difficulty": "hard",
-    "solution": "solution_url_2",
+    "id": "a9f2b8c341d7e5f0",
+    "creatorID": "d72e81db283eaaf9",
+    "title": "reverse string",
+    "description": "Write a function that reverses a given string.",
+    "instructions": "Given a string, return the reversed version of it without using built-in reverse methods.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "strings",
+    "difficulty": "easy",
+    "status": "active",
+    "createdAt": "2024-06-10",
+    "approvedAt": "2024-06-11",
+    "approvedBy": "d72e81db283eaaf9",
+    "testCases": [
+      {
+        "input": "hello",
+        "output": "olleh"
+      },
+      {
+        "input": "world",
+        "output": "dlrow"
+      },
+      {
+        "input": "a",
+        "output": "a"
+      },
+      {
+        "input": "",
+        "output": ""
+      }
+    ]
+  },
+  {
+    "id": "b7c8e5f2a4d9f1b3",
+    "creatorID": "b11d751010d0cc29",
+    "title": "sum of array",
+    "description": "Write a program that takes an array of integers and returns the sum of all the elements.",
+    "instructions": "You are provided an array of integers. Return the sum of its elements.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "arrays",
+    "difficulty": "easy",
     "status": "pending",
-    "createdAt": "2024-12-05T08:00:00Z",
+    "createdAt": "2024-06-10",
     "approvedAt": null,
     "approvedBy": null,
     "testCases": [
       {
-        "input": "3",
-        "output": "27"
+        "input": "[1, 2, 3, 4]",
+        "output": "10"
       },
       {
-        "input": "7",
-        "output": "343"
+        "input": "[5, -1, 3]",
+        "output": "7"
       }
-    ],
-    "participants": {
-      "user111": {
-        "attempts": 1,
-        "successful": false
-      }
-    },
-    "tags": [
-      "javascript",
-      "advanced"
     ]
   },
   {
-    "id": 3,
-    "creatorID": "user125",
-    "title": "Python Data Structures",
-    "description": "Understand and implement various Python data structures.",
-    "instructions": "Complete the tasks below and submit your solution.",
-    "difficulty": "medium",
-    "solution": "solution_url_3",
-    "status": "active",
-    "createdAt": "2024-12-08T15:00:00Z",
-    "approvedAt": "2024-12-09T12:00:00Z",
-    "approvedBy": "admin124",
+    "id": "f8e2c7d1b4a3f0b2",
+    "creatorID": "15fa5b90a5c2543e",
+    "title": "find maximum number",
+    "description": "Write a program to find the maximum number in a given array of integers.",
+    "instructions": "You are provided an array of integers. Return the maximum number in the array.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "arrays",
+    "difficulty": "easy",
+    "status": "pending",
+    "createdAt": "2024-06-10",
+    "approvedAt": null,
+    "approvedBy": null,
     "testCases": [
       {
-        "input": "[1, 2, 3]",
-        "output": "6"
+        "input": "[1, 5, 3, 9]",
+        "output": "9"
       },
       {
-        "input": "[4, 5, 6]",
-        "output": "15"
+        "input": "[0, -3, -1]",
+        "output": "0"
+      }
+    ]
+  },
+  {
+    "id": "48b090d1f414442b",
+    "creatorID": "b11d751010d0cc29",
+    "title": "string manipulation challenge",
+    "description": "Split a given string based on a delimiter and return an array.",
+    "instructions": "### Instructions\n- Implement a function that takes two arguments:\n  - A string `inputString`\n  - A string `delimiter`\n- Split the `inputString` using the `delimiter` and return the resulting array.\n\n### Example\n```javascript\nsplitString(\"a,b,c\", \",\"); // [\"a\", \"b\", \"c\"]\n```",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "string manipulation",
+    "difficulty": "easy",
+    "createdAt": "2024-12-17T03:54:39.185Z",
+    "updatedAt": "2024-12-17T03:54:39.185Z",
+    "status": "pending",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "\"a,b,c\", \",\"",
+        "output": "[\"a\", \"b\", \"c\"]"
+      },
+      {
+        "input": "\"hello world!\", \" \"",
+        "output": "[\"hello\", \"world!\"]"
       }
     ],
-    "participants": {
-      "user112": {
-        "attempts": 3,
-        "successful": true
-      },
-      "user113": {
-        "attempts": 2,
-        "successful": true
-      }
-    },
+    "participants": {},
     "tags": [
-      "python",
-      "data structures"
+      "string",
+      "split",
+      "javascript"
     ]
+  },
+  {
+    "id": "1a3f7d4e2c8b9f05",
+    "creatorID": "f52aedb2826e76f5",
+    "title": "palindrome checker",
+    "description": "Write a function that checks if a given string is a palindrome.",
+    "instructions": "Given a string, return true if it is a palindrome (ignoring case and non-alphanumeric characters), and false otherwise.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "strings",
+    "difficulty": "medium",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "f52aedb2826e76f5",
+    "testCases": [
+      {
+        "input": "\"racecar\"",
+        "output": "true"
+      },
+      {
+        "input": "\"hello\"",
+        "output": "false"
+      },
+      {
+        "input": "\"A man, a plan, a canal, Panama\"",
+        "output": "true"
+      }
+    ]
+  },
+  {
+    "id": "3f2c8d1a5e7b4f60",
+    "creatorID": "d72e81db283eaaf9",
+    "title": "merge sorted arrays",
+    "description": "Write a program to merge two sorted arrays into one sorted array.",
+    "instructions": "Given two arrays of integers sorted in ascending order, return a single merged array that is also sorted in ascending order.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "arrays",
+    "difficulty": "medium",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "d72e81db283eaaf9",
+    "testCases": [
+      {
+        "input": "[1, 3, 5], [2, 4, 6]",
+        "output": "[1, 2, 3, 4, 5, 6]"
+      },
+      {
+        "input": "[10, 20], [5, 15, 25]",
+        "output": "[5, 10, 15, 20, 25]"
+      }
+    ],
+    "updatedAt": "2024-12-17T21:57:12.430Z"
+  },
+  {
+    "id": "7e5d9b3a4c8f1a62",
+    "creatorID": "b11d751010d0cc29",
+    "title": "binary tree depth",
+    "description": "Write a program to calculate the maximum depth of a binary tree.",
+    "instructions": "Given a binary tree, return the maximum depth of the tree. The depth of a binary tree is the number of nodes along the longest path from the root to a leaf.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "data structures",
+    "difficulty": "hard",
+    "status": "pending",
+    "createdAt": "2024-06-11",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "{\"val\": 1, \"left\": {\"val\": 2}, \"right\": {\"val\": 3}}",
+        "output": "2"
+      },
+      {
+        "input": "{\"val\": 1, \"left\": {\"val\": 2, \"left\": {\"val\": 4}}, \"right\": {\"val\": 3}}",
+        "output": "3"
+      }
+    ]
+  },
+  {
+    "id": "9b4d8e2c3a7f0b16",
+    "creatorID": "f52aedb2826e76f5",
+    "title": "knapsack problem",
+    "description": "Solve the 0/1 knapsack problem using dynamic programming.",
+    "instructions": "Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "algorithms",
+    "difficulty": "expert",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "f52aedb2826e76f5",
+    "testCases": [
+      {
+        "input": "{\"weights\": [1, 2, 3], \"values\": [10, 20, 30], \"capacity\": 5}",
+        "output": "50"
+      },
+      {
+        "input": "{\"weights\": [4, 2, 3], \"values\": [50, 20, 30], \"capacity\": 4}",
+        "output": "50"
+      }
+    ]
+  },
+  {
+    "id": "0b4d7e3c2a9f1b45",
+    "creatorID": "d72e81db283eaaf9",
+    "title": "find first missing positive",
+    "description": "Write a program to find the smallest missing positive integer in an unsorted array.",
+    "instructions": "Given an unsorted array, find the smallest missing positive integer in O(n) time and using constant space.",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "algorithms",
+    "difficulty": "expert",
+    "status": "active",
+    "createdAt": "2024-06-11",
+    "approvedAt": "2024-06-12",
+    "approvedBy": "d72e81db283eaaf9",
+    "testCases": [
+      {
+        "input": "[1, 2, 0]",
+        "output": "3"
+      },
+      {
+        "input": "[3, 4, -1, 1]",
+        "output": "2"
+      }
+    ]
+  },
+  {
+    "id": "c4408603ab1e02dc",
+    "creatorID": "b11d751010d0cc29",
+    "title": "Number Sorting Challenge",
+    "description": "Sort an array of numbers in ascending order.",
+    "instructions": "### Instructions\n- Implement a function that takes an array of numbers as input.\n- Sort the numbers in ascending order and return the sorted array.\n\n### Example\n```javascript\nsortNumbers([3, 1, 2]); // [1, 2, 3]```",
+    "language": {
+      "id": 102,
+      "name": "JavaScript (Node.js 22.08.0)"
+    },
+    "category": "sorting algorithms",
+    "difficulty": "medium",
+    "createdAt": "2024-12-17T23:36:38.153Z",
+    "updatedAt": "2024-12-17T23:36:38.153Z",
+    "status": "pending",
+    "approvedAt": null,
+    "approvedBy": null,
+    "testCases": [
+      {
+        "input": "[3, 1, 2]",
+        "output": "[1, 2, 3]"
+      },
+      {
+        "input": "[10, 20, 5, 40, 30]",
+        "output": "[5, 10, 20, 30, 40]"
+      }
+    ],
+    "participants": {},
+    "tags": []
   }
 ]

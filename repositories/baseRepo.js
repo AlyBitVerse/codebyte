@@ -37,7 +37,9 @@ class BaseRepository {
   async getItemById(id) {
     try {
       const items = await this.getAllItems();
-      const item = items.find((item) => item.id === id);
+      const item = items.find((item) => {
+        return item.id === id;
+      });
       if (!item) throw new Error(`Cannot get item by id ${id}`);
       return item;
     } catch (error) {
