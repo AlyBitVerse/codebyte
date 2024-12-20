@@ -8,6 +8,7 @@
     "role": "admin",
     "createdAt": "2024-12-11T15:21:21.807Z",
     "updatedAt": "2024-12-11T15:21:21.807Z",
+    "imgUrl": "https://avatars.githubusercontent.com/u/64196981?v=4",
     "rank": 0,
     "points": 0,
     "createdChallenges": [
@@ -25,6 +26,7 @@
     "role": "admin",
     "createdAt": "2024-12-11T15:21:49.040Z",
     "updatedAt": "2024-12-11T18:53:18.805Z",
+    "imgUrl": "/assets/img/shiba.jpg",
     "rank": 0,
     "points": 0,
     "createdChallenges": [],
@@ -40,6 +42,7 @@
     "role": "admin",
     "createdAt": "2024-12-11T15:22:03.892Z",
     "updatedAt": "2024-12-11T15:22:03.892Z",
+    "imgUrl": "https://avatars.githubusercontent.com/u/86123438?v=4",
     "rank": 1,
     "points": 0,
     "createdChallenges": [],
@@ -61,6 +64,21 @@
       "3f2c8d1a5e7b4f60",
       "c4408603ab1e02dc"
     ],
+    "solvedChallenges": [],
+    "badges": []
+  },
+  {
+    "id": "f442ff958857fa29",
+    "username": "amona99",
+    "name": "amona",
+    "email": "amona@gmail.com",
+    "password": "$2b$10$0h0yjMmh5yJAmULb2kDLK.1YAC9j4i.pMI7CpHwYNOQt8PGy0FySi",
+    "role": "user",
+    "createdAt": "2024-12-19T19:57:20.385Z",
+    "updatedAt": "2024-12-19T19:57:20.385Z",
+    "rank": 0,
+    "points": 0,
+    "createdChallenges": [],
     "solvedChallenges": [],
     "badges": []
   }

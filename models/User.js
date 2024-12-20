@@ -9,6 +9,7 @@ class User {
     role = "user",
     createdAt = new Date(),
     updatedAt = new Date(),
+    imgUrl = "/assets/img/user-default-img.png",
     rank = 0,
     points = 0,
     createdChallenges = [],
@@ -26,6 +27,7 @@ class User {
     this.role = role;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.imgUrl = imgUrl;
     this.rank = rank;
     this.points = points;
     this.createdChallenges = createdChallenges;
@@ -44,6 +46,7 @@ class User {
       object.role,
       object.createdAt,
       object.updatedAt,
+      object.imgUrl,
       object.rank,
       object.points,
       object.createdChallenges,
@@ -67,6 +70,7 @@ class User {
       role: this.role,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
+      imgUrl: this.imgUrl,
       rank: this.rank,
       points: this.points,
       createdChallenges: this.createdChallenges,

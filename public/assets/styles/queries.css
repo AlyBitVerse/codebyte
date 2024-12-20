@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+  #authContainer h1 {
+    font-size: 1.75rem;
+  }
+  .auth-form p,
+  .auth-form .check,
+  .auth-form .btn,
+  .auth-form .btn-1 {
+    font-size: var(--font-size-md);
+  }
+  .auth-form form input {
+    font-size: 0.75rem;
+  }
+}
+/* Start header */
+
+/* End header */

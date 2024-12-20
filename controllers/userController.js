@@ -19,9 +19,7 @@ class UserController {
     }
 
     if (await UserController.#repo.userExistsByEmail(email)) {
-      return res
-        .status(409)
-        .json({ message: "A user with the same email already exists" });
+      return res.status(409).json({ message: "A user with the same email already exists" });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,15 +28,11 @@ class UserController {
     }
 
     if (password.length < 8) {
-      return res
-        .status(400)
-        .json({ message: "Password must be at least 8 characters long" });
+      return res.status(400).json({ message: "Password must be at least 8 characters long" });
     }
 
     if (!username || username.length < 3 || username.length > 15) {
-      return res
-        .status(400)
-        .json({ message: "Username must be between 3 and 15 characters long" });
+      return res.status(400).json({ message: "Username must be between 3 and 15 characters long" });
     }
 
     const usernameRegex = /^[a-zA-Z0-9_]+$/;
@@ -81,10 +75,7 @@ class UserController {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    if (
-      username &&
-      !(await UserController.#repo.userExistsByUsername(username))
-    ) {
+    if (username && !(await UserController.#repo.userExistsByUsername(username))) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
@@ -110,9 +101,10 @@ class UserController {
       );
 
       res.cookie("token", token, {
-        httpOnly: true, // Prevent client-side access
-        secure: process.env.NODE_ENV === "production", // Use HTTPS in production
-        maxAge: 3600000, // 1 hour
+        httpOnly: true, // Prevent access to cookie via JavaScript
+        secure: process.env.NODE_ENV === "production", // Enable HTTPS in production
+        maxAge: 24 * 60 * 60 * 1000, // Cookie expiration (e.g., 1 day)
+        path: "/", // Available to all routes
       });
 
       res.status(200).json({ message: "Login successful" });
@@ -135,7 +127,6 @@ class UserController {
       res.clearCookie("token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
       });
 
       res.status(200).json({ message: "Logout successful" });
@@ -156,7 +147,7 @@ class UserController {
       }
 
       const instance = User.fromJSON(user);
-      res.status(200).json({ user: instance.toJSON(false) });
+      res.status(200).json(instance.toJSON(false));
     } catch (e) {
       res.status(500).json({ message: "Server error", error: e.message });
     }
@@ -185,10 +176,7 @@ class UserController {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const updatedUser = await UserController.#repo.updateItemById(
-        id,
-        updates
-      );
+      const updatedUser = await UserController.#repo.updateItemById(id, updates);
       const instance = User.fromJSON(updatedUser);
 
       res.status(200).json({
@@ -208,9 +196,7 @@ class UserController {
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
-        return res
-          .status(403)
-          .json({ message: "You must be an admin to access this resource" });
+        return res.status(403).json({ message: "You must be an admin to access this resource" });
       }
 
       const users = await UserController.#repo.getAllItems();
@@ -229,18 +215,12 @@ class UserController {
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
-        return res
-          .status(403)
-          .json({ message: "You must be an admin to access this resource" });
+        return res.status(403).json({ message: "You must be an admin to access this resource" });
       }
 
-      const targetUserExists = await UserController.#repo.itemExistsById(
-        req.params.id
-      );
+      const targetUserExists = await UserController.#repo.itemExistsById(req.params.id);
       if (!targetUserExists)
-        return res
-          .status(404)
-          .json({ message: `User not found with ID ${req.params.id}` });
+        return res.status(404).json({ message: `User not found with ID ${req.params.id}` });
 
       const user = await UserController.#repo.getItemById(req.params.id);
       res.status(200).json({ user });
@@ -258,18 +238,12 @@ class UserController {
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
-        return res
-          .status(403)
-          .json({ message: "You must be an admin to access this resource" });
+        return res.status(403).json({ message: "You must be an admin to access this resource" });
       }
 
-      const targetUserExists = await UserController.#repo.itemExistsById(
-        req.params.id
-      );
+      const targetUserExists = await UserController.#repo.itemExistsById(req.params.id);
       if (!targetUserExists)
-        return res
-          .status(404)
-          .json({ message: `User not found with ID ${req.params.id}` });
+        return res.status(404).json({ message: `User not found with ID ${req.params.id}` });
 
       const { createdAt, ...updateableData } = req.body;
       const updatedAt = new Date();
@@ -293,18 +267,12 @@ class UserController {
       const admin = await UserController.#repo.getItemById(req.user.id);
 
       if (!admin) {
-        return res
-          .status(403)
-          .json({ message: "You must be an admin to access this resource" });
+        return res.status(403).json({ message: "You must be an admin to access this resource" });
       }
 
-      const targetUserExists = await UserController.#repo.itemExistsById(
-        req.params.id
-      );
+      const targetUserExists = await UserController.#repo.itemExistsById(req.params.id);
       if (!targetUserExists)
-        return res
-          .status(404)
-          .json({ message: `User not found with ID ${req.params.id}` });
+        return res.status(404).json({ message: `User not found with ID ${req.params.id}` });
 
       await UserController.#repo.deleteItemById(req.params.id);
 
