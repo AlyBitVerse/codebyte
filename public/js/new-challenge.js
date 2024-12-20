@@ -34,21 +34,7 @@ document.querySelector(".add-test-case-btn").addEventListener("click", function 
         <input type="text" placeholder="Enter Input">
       </div>
       <div class="test-case-item">
-        <select>
-          <option value="text">Text</option>
-          <option value="number">Number</option>
-          <option value="date">Date</option>
-        </select>
-      </div>
-      <div class="test-case-item">
         <input type="text" placeholder="Enter Output">
-      </div>
-      <div class="test-case-item">
-        <select>
-          <option value="text">Text</option>
-          <option value="number">Number</option>
-          <option value="date">Date</option>
-        </select>
       </div>
     </div>
   `;

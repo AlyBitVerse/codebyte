@@ -116,13 +116,14 @@ class ChallengeController {
     const challengeID = uid(16);
     // Validations
     const { title, description, language, category, instructions, difficulty, testCases, tags } = req.body;
-    if (!title) res.status(400).json({ message: "Title is required" });
-    if (!description) res.status(400).json({ message: "Description is required" });
-    if (!language) res.status(400).json({ message: "Language is required" });
-    if (!category) res.status(400).json({ message: "Category is required" });
-    if (!instructions) res.status(400).json({ message: "Instructions are required" });
-    if (!difficulty) res.status(400).json({ message: "Difficulty is required" });
-    if (!testCases.length) res.status(400).json({ message: "A minimum of 1 test case is required." });
+    if (!title) return res.status(400).json({ message: "Title is required" });
+    if (!description) return res.status(400).json({ message: "Description is required" });
+    if (!language) return res.status(400).json({ message: "Language is required" });
+    if (!category) return res.status(400).json({ message: "Category is required" });
+    if (!instructions) return res.status(400).json({ message: "Instructions are required" });
+    if (!difficulty) return res.status(400).json({ message: "Difficulty is required" });
+    if (!testCases.length || !Array.isArray(JSON.parse(testCases)))
+      return res.status(400).json({ message: "A minimum of 1 test case is required." });
     // Create a new Challenge object
     const challenge = new Challenge(
       challengeID,
@@ -138,7 +139,7 @@ class ChallengeController {
       new Date(),
       isAdmin || req.user.rank > User.BYPASS_RANK ? new Date() : null,
       isAdmin || req.user.rank > User.BYPASS_RANK ? req.user.id : null,
-      testCases,
+      JSON.parse(testCases),
       {},
       tags
     );
@@ -152,7 +153,7 @@ class ChallengeController {
       await userRepo.updateItemById(creatorID, {
         createdChallenges: modifiedChallenges,
       });
-      res.status(201).json({ message: "Challenge created successfully" });
+      res.status(201).json({ message: "Challenge created successfully", id: challengeID });
     } catch (err) {
       console.log(err);
     }
