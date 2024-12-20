@@ -26,8 +26,7 @@ const notAuthenticatedMiddleware = (req, res, next) => {
 const roleMiddleware = (requiredRoles = []) => {
   return (req, res, next) => {
     const user = req.user;
-    if (!user)
-      return res.status(401).json({ message: "Unauthorized: No user found" });
+    if (!user) return res.status(401).json({ message: "Unauthorized: No user found" });
 
     if (requiredRoles.length && !requiredRoles.includes(user.role)) {
       return res.status(403).json({

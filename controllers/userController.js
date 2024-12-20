@@ -101,9 +101,10 @@ class UserController {
       );
 
       res.cookie("token", token, {
-        httpOnly: true, // Prevent client-side access
-        secure: process.env.NODE_ENV === "production", // Use HTTPS in production
-        maxAge: 3600000, // 1 hour
+        httpOnly: true, // Prevent access to cookie via JavaScript
+        secure: process.env.NODE_ENV === "production", // Enable HTTPS in production
+        maxAge: 24 * 60 * 60 * 1000, // Cookie expiration (e.g., 1 day)
+        path: "/", // Available to all routes
       });
 
       res.status(200).json({ message: "Login successful" });
@@ -126,7 +127,6 @@ class UserController {
       res.clearCookie("token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
       });
 
       res.status(200).json({ message: "Logout successful" });
@@ -147,7 +147,7 @@ class UserController {
       }
 
       const instance = User.fromJSON(user);
-      res.status(200).json({ user: instance.toJSON(false) });
+      res.status(200).json(instance.toJSON(false));
     } catch (e) {
       res.status(500).json({ message: "Server error", error: e.message });
     }

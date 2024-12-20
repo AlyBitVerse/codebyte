@@ -8,9 +8,12 @@
     "role": "admin",
     "createdAt": "2024-12-11T15:21:21.807Z",
     "updatedAt": "2024-12-11T15:21:21.807Z",
+    "imgUrl": "https://avatars.githubusercontent.com/u/64196981?v=4",
     "rank": 0,
     "points": 0,
-    "createdChallenges": ["3f2c8d1a5e7b4f60"],
+    "createdChallenges": [
+      "3f2c8d1a5e7b4f60"
+    ],
     "solvedChallenges": [],
     "badges": []
   },
@@ -23,6 +26,7 @@
     "role": "admin",
     "createdAt": "2024-12-11T15:21:49.040Z",
     "updatedAt": "2024-12-11T18:53:18.805Z",
+    "imgUrl": "/assets/img/shiba.jpg",
     "rank": 0,
     "points": 0,
     "createdChallenges": [],
@@ -38,6 +42,7 @@
     "role": "admin",
     "createdAt": "2024-12-11T15:22:03.892Z",
     "updatedAt": "2024-12-11T15:22:03.892Z",
+    "imgUrl": "https://avatars.githubusercontent.com/u/86123438?v=4",
     "rank": 1,
     "points": 0,
     "createdChallenges": [],
@@ -55,7 +60,10 @@
     "updatedAt": "2024-12-13T22:11:21.451Z",
     "rank": 0,
     "points": 0,
-    "createdChallenges": ["3f2c8d1a5e7b4f60", "c4408603ab1e02dc"],
+    "createdChallenges": [
+      "3f2c8d1a5e7b4f60",
+      "c4408603ab1e02dc"
+    ],
     "solvedChallenges": [],
     "badges": []
   },

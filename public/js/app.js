@@ -3,39 +3,54 @@ const API_BASE_URL = "http://localhost:3000/api";
 const Menu = document.querySelector(".menu");
 const sideNavMenu = document.getElementById("sideNav");
 const sideNavLinks = document.querySelectorAll("#sideNav a");
+const currentUser = await (async () => getCurrentUser())();
 
 function renderNavbar() {
-  if (true) {
-    console.log("Token is present:", Cookies.get("token"));
+  if (currentUser) {
     Menu.innerHTML = ` 
             <li>
               <a><i class="fa-solid fa-bell"></i></a>
             </li>
-            <li class='xp'>0 xp</li>
+            <li class='xp'>${currentUser.rank} XP</li>
             <li>
-              <a href="" class="userImage" id="open-sideMenu" ><img src="https://placehold.co/400" alt="" /></a>
+              <a href="/profile" class="userImage" id="open-sideMenu" >
+              <img src="${currentUser.imgUrl}" />
+              </a>
             </li>`;
   } else {
-    console.log("Token is not present.");
     Menu.innerHTML = `
             <li>
-              <a href="../pages/auth.html">Login</a>
+              <a href="/auth">Login</a>
             </li>
            `;
   }
 }
 renderNavbar();
 
-function handelLogout(event) {
+async function getCurrentUser() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/me`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (err) {
+    console.log("Currently, no user is logged in.");
+  }
+}
+async function handleLogout(event) {
   event.preventDefault();
-  document.cookie =
-    "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; HttpOnly;";
-  // Redirect to homepage
+  await fetch(`${API_BASE_URL}/logout`, {
+    method: "POST",
+    credentials: "include",
+  }).then((response) => {
+    if (response.ok) {
+      console.log("Cookie cleared");
+    }
+  }); // Redirect to homepage
   window.location.href = "/";
   // Re-render the navbar to reflect the updated state
   renderNavbar();
 }
-document.getElementById("logout-Btn").addEventListener("click", handelLogout);
+document.getElementById("logout-Btn").addEventListener("click", handleLogout);
 
 document.getElementById("open-sideMenu").addEventListener("click", (e) => {
   e.preventDefault();

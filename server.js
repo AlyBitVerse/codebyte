@@ -22,21 +22,19 @@ const viewRoutes = require("./routes/views");
 const PORT = process.env.PORT || 3000;
 const app = express();
 const publicPath = path.join(__dirname, process.env.STATIC_PATH || "public");
-
 app.use(cookieParser());
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true, // Allow cookies
+  })
+);
 // For form submissions
 app.use(express.urlencoded({ extended: false }));
 
 // For regular requests
 app.use(express.json());
-
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Frontend origin
-    credentials: true, // Allow cookies
-  })
-);
 
 app.use(express.static(publicPath));
 
@@ -53,5 +51,5 @@ app.use("*", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
-  console.log(`Visit http://127.0.0.1:${PORT}`);
+  console.log(`Visit http://localhost:${PORT}`);
 });

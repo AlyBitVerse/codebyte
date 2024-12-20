@@ -37,10 +37,10 @@ function login(e) {
 
   fetch(`${API_BASE_URL}/login`, {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(userData),
   })
     .then((res) => {
@@ -50,6 +50,7 @@ function login(e) {
 
     .then((data) => {
       console.log("data", data);
+      window.location.href = "/";
     })
     .catch((err) => console.log("Error", err));
 }
