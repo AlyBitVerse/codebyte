@@ -5,6 +5,7 @@ const UserRepository = require("../repositories/userRepo");
 const Judge0 = require("../services/Judge0");
 const User = require("../models/User");
 const userRepo = new UserRepository();
+
 class ChallengeController {
   static #repo = new ChallengeRepository();
   static validKeys = [

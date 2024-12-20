@@ -1,16 +1,13 @@
 /* General Reset */
 body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #f9f9f9c0;
+  color: #333333e3;
 }
 
-/* Container */
-.container {
+/* Container */ 
+ .form-container {
   max-width: 800px;
-  margin: 3rem auto;
+  margin: 5rem auto;
   padding: 2rem;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -20,29 +17,32 @@ body {
 /* Form Header */
 .form-header h1 {
   margin-bottom: 8px;
-  color: #007bff;
+  color:var( --color-accent-tertiary);
+}
+.form-header h1 span{
+  color:var( --color-accent-primary);
 }
 
 .form-header p {
   margin-top: 0;
-  color: #555;
+  color: #777;
   font-size: 0.9rem;
 }
 
 /* Form Styling */
 .challenge-form .form-group {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .challenge-form label {
   display: block;
   font-weight: bold;
-  color: #333;
+  color:var#5f5e5e;
   margin-bottom: 0.5rem;
 }
 
 .challenge-form .required {
-  color: #d9534f;
+  color: #d12a25;
 }
 
 .challenge-form input,
@@ -59,7 +59,7 @@ body {
 .challenge-form input:focus,
 .challenge-form select:focus,
 .challenge-form textarea:focus {
-  border-color: #007bff;
+  border-color: var(--color-accent-tertiary);
   outline: none;
 }
 
@@ -119,11 +119,11 @@ select {
 }
 
 .button-group input[type="radio"]:checked + label {
-  color: #007bff; /* White text */
+  color:var(--color-accent-tertiary); /* White text */
   font-weight: bold;
   border: 1px solid;
   border-radius: 5px;
-  border-color: #007bff; /* Blue border when selected */
+  border-color:var(--color-accent-tertiary); /* Blue border when selected */
 }
 
 /* Inactive (not selected) button styling */
@@ -151,20 +151,16 @@ select {
   display: inline-block;
   padding: 10px 16px;
   margin-top: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
   color: #fff;
-  background-color: #007bff;
+  background-color: var(--color-accent-primary);
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform all 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #preview-btn:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+  background-color: #283f47;
+  transform: scale(1.01);
 }
 
 #preview-btn:active {
@@ -184,7 +180,7 @@ select {
 }
 
 .test-cases-section h2 {
-  color: #007bff;
+  color: var(--color-accent-tertiary);
   margin-bottom: 16px;
   font-size: 1.25rem;
 }
@@ -259,18 +255,15 @@ select {
 /* Add Test Case Button */
 .add-test-case-btn {
   padding: 10px 16px;
-  font-size: 1rem;
-  background-color: #007bff;
+  background-color: var(--color-accent-primary);
   color: #fff;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 16px;
 }
 
 .add-test-case-btn:hover {
-  background-color: #0369d6;
+  background-color: #283f47;
 }
 
 .add-test-case-btn:active {
@@ -285,21 +278,19 @@ select {
 
 /* Submit Button */
 .submit-btn {
+  display: block;
+  margin: 20px auto ;
   padding: 12px 20px;
-  font-size: 1rem;
-  background-color: #28a745; /* Green color */
+  background-color: var(--color-accent-primary); /* Green color */
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 20px; /* Space it out a bit */
-  width: 100%; /* Full width for the button */
+  transition: background-color 0.3s ease, transform  all 0.3s ease;
+
+  width: 50%; /* Full width for the button */
 }
 
 .submit-btn:hover {
-  background-color: #218838; /* Darker green on hover */
-  transform: translateY(-2px); /* Subtle lift effect */
+  background-color:#283f47; 
+  transform: scale(1.01); /* Subtle lift effect */
 }
 
 .submit-btn:active {

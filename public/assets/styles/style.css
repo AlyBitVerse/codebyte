@@ -57,7 +57,7 @@
 /* End authContainer */
 /* Start Header */
 header {
-  background-color: #1d1d1d;
+  background-color: var(--color-accent-primary);
 }
 header nav {
   justify-content: space-between;
@@ -123,7 +123,7 @@ header nav ul li a i {
   height: 100%;
   width: 0;
   position: fixed;
-  background: #171717;
+  background: var(--color-accent-primary);
   top: 0;
   right: 0;
   transition:  0.5s;

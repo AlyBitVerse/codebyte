@@ -4,12 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New challenge</title>
+    <link rel="stylesheet" href="../assets/styles/global.css" />
+    <link rel="stylesheet" href="../assets/styles/utils.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/queries.css" />
     <link rel="stylesheet" href="../assets/styles/new-challenge.css" />
   </head>
   <body>
-    <div class="container">
+    <!-- Start Header -->
+    <header>
+      <div class="container">
+        <nav class="flex row wrap">
+          <h1 id="logo">
+            <i class="fa-solid fa-less-than "></i> Code<span>byte </span
+            ><i class="fa-solid fa-greater-than "></i>
+          </h1>
+          <ul class="menu flex"></ul>
+        </nav>
+      </div>
+    </header>
+    <!-- End Header -->
+    <div class="form-container">
       <div class="form-header">
-        <h1>Create Your Coding Challenge</h1>
+        <h1><span>Create Your</span> Coding Challenge</h1>
         <p>Design a coding challenge and share it with the community</p>
       </div>
       <form action="/challenges" method="post" class="challenge-form">
@@ -80,16 +97,13 @@
         </div>
         <!-- Instructions -->
         <div class="form-group">
-          <label for="challenge-instructions"
-            >Instructions (Markdown Supported) <span class="required">*</span></label
-          >
+          <label for="challenge-instructions">Instructions (Markdown Supported) <span class="required">*</span></label>
           <textarea
             id="challenge-instructions"
             name="challenge-instructions"
             rows="6"
             placeholder="Write detailed instructions in Markdown..."
-            required
-          ></textarea>
+            required></textarea>
           <button type="button" id="preview-btn" class="btn btn-secondary">Preview Markdown</button>
           <div id="markdown-preview" class="markdown-preview"></div>
         </div>
@@ -128,15 +142,17 @@
           </div>
 
           <!-- Add Test Case Button -->
-          <button class="add-test-case-btn">+ Test Case</button>
+          <button class="add-test-case-btn btn">+ Test Case</button>
 
           <!-- Submit Button -->
-          <button type="submit" class="submit-btn">Submit</button>
+          <button class="submit-btn btn">Submit</button>
         </div>
       </form>
     </div>
+    <script
+      src="https://kit.fontawesome.com/49f880beca.js"
+      crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <script src="../js/new-challenge.js"></script>
   </body>
 </html>
