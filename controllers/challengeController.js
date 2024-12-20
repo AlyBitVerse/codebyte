@@ -3,7 +3,9 @@ const Challenge = require("../models/Challenge");
 const ChallengeRepository = require("../repositories/challengeRepo");
 const UserRepository = require("../repositories/userRepo");
 const Judge0 = require("../services/Judge0");
+const User = require("../models/User");
 const userRepo = new UserRepository();
+
 class ChallengeController {
   static #repo = new ChallengeRepository();
   static validKeys = [
@@ -133,11 +135,11 @@ class ChallengeController {
       language,
       category,
       difficulty,
-      isAdmin ? "active" : "pending",
+      isAdmin || req.user.rank > User.BYPASS_RANK ? "active" : "pending",
       new Date(),
       new Date(),
-      isAdmin ? new Date() : null,
-      isAdmin ? req.user.id : null,
+      isAdmin || req.user.rank > User.BYPASS_RANK ? new Date() : null,
+      isAdmin || req.user.rank > User.BYPASS_RANK ? req.user.id : null,
       JSON.parse(testCases),
       {},
       tags

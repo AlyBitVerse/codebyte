@@ -32,39 +32,33 @@
       <form action="/challenges" method="post" class="challenge-form">
         <!-- Challenge Title -->
         <div class="form-group">
-          <label for="challenge-title"
-            >Challenge Title <span class="required">*</span></label
-          >
+          <label for="challenge-title">Challenge Title <span class="required">*</span></label>
           <input
             type="text"
             id="challenge-title"
             name="challenge-title"
             placeholder="Enter a concise challenge title"
-            required />
+            required
+          />
         </div>
         <!-- Challenge Description -->
         <div class="form-group">
-          <label for="challenge-description"
-            >Short Description <span class="required">*</span></label
-          >
+          <label for="challenge-description">Short Description <span class="required">*</span></label>
           <textarea
             type="text"
             id="challenge-description"
             name="challenge-description"
             placeholder="Write a short, engaging summary (max 3 lines)..."
             rows="3"
-            required></textarea>
+            required
+          ></textarea>
           <small>Keep it brief! This will appear on the challenge card.</small>
         </div>
         <!-- Programming Language -->
         <div class="form-group">
-          <label for="challenge-language"
-            >Programming Language <span class="required">*</span></label
-          >
+          <label for="challenge-language">Programming Language <span class="required">*</span></label>
           <select id="challenge-language" name="challenge-language" required>
-            <option value="" disabled selected>
-              Select a programming language
-            </option>
+            <option value="" disabled selected>Select a programming language</option>
             <option value="python">Python</option>
             <option value="javascript">JavaScript</option>
             <option value="java">Java</option>
@@ -77,9 +71,7 @@
         </div>
         <!-- Category -->
         <div class="form-group">
-          <label for="challenge-category"
-            >Category <span class="required">*</span></label
-          >
+          <label for="challenge-category">Category <span class="required">*</span></label>
           <select id="challenge-category" name="challenge-category" required>
             <option value="" disabled selected>Select a category</option>
             <option value="algorithms">Algorithms</option>
@@ -91,52 +83,28 @@
         </div>
         <!-- Difficulty -->
         <div class="form-group">
-          <label for="challenge-category"
-            >Difficulty Level <span class="required">*</span></label
-          >
+          <label for="challenge-category">Difficulty Level <span class="required">*</span></label>
           <div class="button-group">
-            <input
-              type="radio"
-              id="difficulty-easy"
-              name="difficulty"
-              value="easy"
-              required />
+            <input type="radio" id="difficulty-easy" name="difficulty" value="easy" required />
             <label for="difficulty-easy">Easy</label>
-            <input
-              type="radio"
-              id="difficulty-medium"
-              name="difficulty"
-              value="medium" />
+            <input type="radio" id="difficulty-medium" name="difficulty" value="medium" />
             <label for="difficulty-medium">Medium</label>
-            <input
-              type="radio"
-              id="difficulty-hard"
-              name="difficulty"
-              value="hard" />
+            <input type="radio" id="difficulty-hard" name="difficulty" value="hard" />
             <label for="difficulty-hard">Hard</label>
-            <input
-              type="radio"
-              id="difficulty-expert"
-              name="difficulty"
-              value="expert" />
+            <input type="radio" id="difficulty-expert" name="difficulty" value="expert" />
             <label for="difficulty-expert">Expert</label>
           </div>
         </div>
         <!-- Instructions -->
         <div class="form-group">
-          <label for="challenge-instructions"
-            >Instructions (Markdown Supported)
-            <span class="required">*</span></label
-          >
+          <label for="challenge-instructions">Instructions (Markdown Supported) <span class="required">*</span></label>
           <textarea
             id="challenge-instructions"
             name="challenge-instructions"
             rows="6"
             placeholder="Write detailed instructions in Markdown..."
             required></textarea>
-          <button type="button" id="preview-btn" class="btn btn-secondary">
-            Preview Markdown
-          </button>
+          <button type="button" id="preview-btn" class="btn btn-secondary">Preview Markdown</button>
           <div id="markdown-preview" class="markdown-preview"></div>
         </div>
         <div class="test-cases-section">
@@ -185,7 +153,6 @@
       src="https://kit.fontawesome.com/49f880beca.js"
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <script src="../js/new-challenge.js"></script>
   </body>
 </html>

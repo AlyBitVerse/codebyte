@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-.flex.row.wrap { 
+.flex.row.wrap {
   flex-wrap: wrap;
 }
 
