@@ -4,10 +4,10 @@ body {
   color: #333333e3;
 }
 
-/* Container */ */
- .container {
+/* Container */ 
+ .form-container {
   max-width: 800px;
-  margin: 3rem auto;
+  margin: 5rem auto;
   padding: 2rem;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
