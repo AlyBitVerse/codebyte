@@ -17,7 +17,7 @@ body {
 /* Form Header */
 .form-header h1 {
   margin-bottom: 8px;
-  color:var( --color-accent-secondary);
+  color:var( --color-accent-tertiary);
 }
 .form-header h1 span{
   color:var( --color-accent-primary);
@@ -119,7 +119,7 @@ select {
 }
 
 .button-group input[type="radio"]:checked + label {
-  color:var(--color-accent-secondary); /* White text */
+  color:var(--color-accent-tertiary); /* White text */
   font-weight: bold;
   border: 1px solid;
   border-radius: 5px;
@@ -152,14 +152,14 @@ select {
   padding: 10px 16px;
   margin-top: 8px;
   color: #fff;
-  background-color: var(--color-accent-secondary);
+  background-color: var(--color-accent-primary);
   border: none;
   transition: background-color 0.3s ease, transform all 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #preview-btn:hover {
-  background-color: var(--color-accent-primary);
+  background-color: #283f47;
   transform: scale(1.01);
 }
 
@@ -180,7 +180,7 @@ select {
 }
 
 .test-cases-section h2 {
-  color: var(--color-accent-secondary);
+  color: var(--color-accent-tertiary);
   margin-bottom: 16px;
   font-size: 1.25rem;
 }
@@ -255,7 +255,7 @@ select {
 /* Add Test Case Button */
 .add-test-case-btn {
   padding: 10px 16px;
-  background-color: var(--color-accent-secondary);
+  background-color: var(--color-accent-primary);
   color: #fff;
   border: none;
   transition: background-color 0.3s ease;
@@ -263,7 +263,7 @@ select {
 }
 
 .add-test-case-btn:hover {
-  background-color: var(--color-accent-primary);
+  background-color: #283f47;
 }
 
 .add-test-case-btn:active {
@@ -282,7 +282,7 @@ select {
   display: block;
   margin: 20px auto ;
   padding: 12px 20px;
-  background-color: #28a745; /* Green color */
+  background-color: var(--color-accent-primary); /* Green color */
   color: #fff;
   transition: background-color 0.3s ease, transform  all 0.3s ease;
 
@@ -290,7 +290,7 @@ select {
 }
 
 .submit-btn:hover {
-  background-color:var(--color-accent-primary); /* Darker green on hover */
+  background-color:#283f47; 
   transform: scale(1.01); /* Subtle lift effect */
 }
 
