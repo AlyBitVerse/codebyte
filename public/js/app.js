@@ -48,7 +48,7 @@ async function handleLogout(event) {
   }); // Redirect to homepage
   window.location.href = "/";
   // Re-render the navbar to reflect the updated state
-  renderNavbar();
+  // renderNavbar();
 }
 document.getElementById("logout-Btn").addEventListener("click", handleLogout);
 
