@@ -1,4 +1,5 @@
 class User {
+  static BYPASS_RANK = 5;
   constructor(
     id,
     username,
@@ -30,6 +31,7 @@ class User {
     this.createdChallenges = createdChallenges;
     this.solvedChallenges = solvedChallenges;
     this.badges = badges;
+    this.isActive = true;
   }
 
   static fromJSON(object) {
@@ -46,7 +48,8 @@ class User {
       object.points,
       object.createdChallenges,
       object.solvedChallenges,
-      object.badges
+      object.badges,
+      object.isActive
     );
   }
 
@@ -69,6 +72,7 @@ class User {
       createdChallenges: this.createdChallenges,
       solvedChallenges: this.solvedChallenges,
       badges: this.badges,
+      isActive: this.isActive,
     };
 
     if (protect) {
