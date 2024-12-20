@@ -37,6 +37,8 @@ function handelLogout(event) {
 }
 document.getElementById("logout-Btn").addEventListener("click", handelLogout);
 
+///// SideMenu (open)/////////
+
 document.getElementById("open-sideMenu").addEventListener("click", (e) => {
   e.preventDefault();
   sideNavMenu.style.width = "25rem";
@@ -48,6 +50,8 @@ document.getElementById("open-sideMenu").addEventListener("click", (e) => {
   });
   document.querySelector("#sideNav a").style.opacity = "1";
 });
+
+////// SideMenu (close)////////
 
 document.getElementById("close-sideMenu").addEventListener("click", (e) => {
   e.preventDefault();
